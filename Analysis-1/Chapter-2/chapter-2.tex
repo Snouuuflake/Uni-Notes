@@ -234,7 +234,54 @@ We induct on $b$.
   \end{tabular}
 \end{center}
 
+\paragraph{Definition 2.2.1: Ordering of $\mathbb{N}$}~
 
+$n \geq m \iff \exists \colorbox{lightgray}{$a$}~ s.t.~ n = m + a$
+
+$n > m \iff n \geq m \land n \neq m$
+
+{
+	\renewcommand{\theenumi}{(\alph{enumi})}
+	\begin{enumerate}
+		\item $x \geq x$
+			\begin{center}
+				\begin{tabular}{l l}
+					Def. Addition: & $x + 0 = x$ \\
+					               & $\therefore \colorbox{lightgray}{$a$} = 0 \to x \geq x$
+				\end{tabular}
+			\end{center}
+
+		\item $a \geq b \land b \geq c \to a \geq c$
+			\begin{center}
+				\begin{tabular}{l l}
+					$a = b + n_1; b = c + n_2$ \\
+					$a = c + n_1 + n_2$
+				\end{tabular}
+			\end{center}
+			
+		\item $a \geq b \land b \geq a \to a = b$
+			\begin{center}
+				\begin{tabular}{l l}
+					                        & $a = b + n_1;~ b = a + n_2$ \\
+					                        & $a = a + n_2 + n_1$ \\
+					Asso. \& Def. Addition: & $a + 0 = a + (n_2 + n_1)$ \\
+					Cancelation law:        & $(n_2 + n_1) = 0$ \\
+					Collary 2.2.9:          & $n_1, n_2 = 0$ \\
+					Def. Addition:          & $a = b + 0 \to a = b$
+				\end{tabular}
+			\end{center}
+			
+		\item $a \geq b \iff a + c \geq b + c$
+			\begin{center}
+				\begin{tabular}{l l}
+					%$a \geq b \to$         & $a = b + n_1$ \\
+					$a + c \geq b + c \to$ & $a + c = b + c + n_1$ \\
+					Cancellation law:      & $a = b + n_1 \therefore a \geq b ???$
+				\end{tabular}
+			\end{center}
+
+	\end{enumerate}
+}
 
 
 
