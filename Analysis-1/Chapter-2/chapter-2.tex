@@ -240,6 +240,8 @@ $n \geq m \iff \exists \colorbox{lightgray}{$a$}~ s.t.~ n = m + a$
 
 $n > m \iff n \geq m \land n \neq m$
 
+\paragraph{Proposition 2.2.12: (Basic properties of the natural nubers)}
+
 {
 	\renewcommand{\theenumi}{(\alph{enumi})}
 	\begin{enumerate}
@@ -278,11 +280,65 @@ $n > m \iff n \geq m \land n \neq m$
 					$a + c \geq b + c \to$ & $a + c = b + c + n_1$ \\
 					Cancellation law:      & $a = b + n_1 \therefore a \geq b ???$
 				\end{tabular}
+			\end{center} 
+			
+		\item $a < b \iff a++ \leq b$
+			\begin{center}
+				\begin{tabular}{l l}
+                         & $a++ \geq b \to a++~ + n_1 = b$ \\
+          Def. Addition: & $a++ = a + 1$ \\
+          							 & $n_2 = n_1 + 1 \to a + n_2 = b$ \\
+          Def $ > $ 1    & $n_2 > 0$ \\
+          							 & $a < b$
+				\end{tabular}
 			\end{center}
+			\\~\\
 
+		\item $a < b \iff b = a + d \land d \in \mathbb{N}+$
+			\begin{center}
+				\begin{tabular}{l l}
+					Proposition 2.2.12 e: & $a++ \leq b$ \\
+					Def. Addition         & $a + 1 \leq b$ \\
+					Def. $ < $            & $a + 1 + n_1 = b$ \\
+					Def. Addition         & $a + (n_1++) = b$ \\
+					Axiom 2.3             & $(n_1++) \neq 0$ \\
+					Def. Positive         & $n_1 \text{ is positive}$
+				\end{tabular}
+			\end{center}
 	\end{enumerate}
 }
 
+\paragraph{Proposition 2.2.13: Trichotomy of order for natural numbers}~
+
+$a,b \in \mathbb{N} \to (a < b \lor a = b \lor a > b)$
+\begin{enumerate}
+	\item $a = 0 \to a \leq b~ \forall b$ (why?) Induction.
+			\begin{center}
+				\begin{tabular}{l l}
+					$b = 0$ & $0 + 0 = b$ \\
+					$b ++ $ & $0 + n_1 = b++$ \\
+									& $\forall b++, n_1 = b++$~~~  or something like that
+				\end{tabular}
+			\end{center}
+
+	\item $a > b \to a++ > b$ (why?)
+			\begin{center}
+				\begin{tabular}{l l}
+					Proposition 2.2.12 f: & $a = b + n_1, n_1 \text{ is positive}$ \\
+					Axiom 2.4:            & $a++ = (b + n_1)++$ \\
+					Associativiy          & $a++ = b + (n_1++)$ \\
+					Axiom 2.3:            & $n_1++ \text{ is positive}$ \\
+					Proposition 2.2.12 f: & $a++ > b$
+				\end{tabular}
+			\end{center}
+
+	\item $a = b \to a++ > b$ (why?)
+			\begin{center}
+				\begin{tabular}{l l}
+					Def. Addition: & $a++ = b++ = a + 1$
+				\end{tabular}
+			\end{center}
+\end{enumerate}
 
 
 \end{document}
