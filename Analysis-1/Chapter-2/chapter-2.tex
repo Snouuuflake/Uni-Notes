@@ -340,5 +340,24 @@ $a,b \in \mathbb{N} \to (a < b \lor a = b \lor a > b)$
 			\end{center}
 \end{enumerate}
 
+\paragraph{Proposition 2.2.14: Strong principle of induction}
+
+Let $m_0$ be some natural number and $P(m)$ be a property of an arbetrary natural number $m$. Suppose that $\forall m \geq m_0:~ P(m')~ \forall~ m_0 \leq m' < m \to P(m)$. It can then be concluded that $P(m)~ \forall~ m \geq m_0$.
+
+\paragraph{Proof:}
+Let $Q(n)$ be the property that $P(m)~ \forall~ m_0 \leq m < n$. The hypothesis can now be re-written as: $Q(n) \to P(n)$.
+
+\begin{center}
+	\begin{tabular}{l l}
+		\textbf{Base case: $n = 0$} \\
+		Im not proving this:   & $\nexists m \text{ s.t. } m_0 \leq m < 0$ \\
+		\\
+		\textbf{Assume $Q(n) \to P(n)$. Prove $Q(n++)$} \\
+		$Q(n) \land P(n) \to$  & $P(m)~ \forall~ m_0 \leq m \colorbox{pink}{$\leq$} n$ \\
+		Proposition 2.2.12 e:  & $P(m)~ \forall~ m_0 \leq m < n++$ \\
+		Def. $Q(n)$            & $Q(n++)~~ \square$
+	\end{tabular}
+\end{center}
+
 
 \end{document}
