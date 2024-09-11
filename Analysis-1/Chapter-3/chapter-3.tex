@@ -1,0 +1,166 @@
+\documentclass[letterpaper]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{newtxsf}
+\usepackage[most]{tcolorbox}
+
+\graphicspath{ {../images/} }
+
+%TODO Title
+\def\T{Chapter 3: Set Theory}
+%TODO Day
+\def\D{10}
+%TODO Month
+\def\M{9}
+%TODO Year
+\def\Y{2024}
+\addtolength{\topmargin}{-4in}
+\setlength{\topmargin}{0pt}
+\title{\vspace{-3.0cm}\textbf{\T}}
+\date{\vspace{-1cm}}
+\author{~}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\newtcolorbox{defbox}[3][]{%
+  colback=RoyalBlue!5!white,
+  coltitle=RoyalBlue!15!black,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{RoyalBlue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definition~#2~#3},
+	#1
+}
+
+\newtcolorbox{axbox}[3][]{%
+  colback=WildStrawberry!5!white,
+  coltitle=WildStrawberry!15!black,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{WildStrawberry},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Axiom~#2~#3},
+	#1
+}
+
+\newtcolorbox{lebox}[3][]{%
+  colback=Goldenrod!5!white,
+  coltitle=Goldenrod!15!black,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{Goldenrod},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Lemma~#2~#3},
+	#1
+}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{defbox}{3.1.1}{(Sets, "$\in$")}
+  A set is any unordered collection of objects. If $x$ is an object and $A$ is a set, $x \in A \lor x \notin A$.
+\end{defbox}
+
+\begin{axbox}{3.1}{Sets are objects}
+  If $A$ is a set, then $A$ is also an object; $A$ can belong to $B$, i.e. $\{3,\{3,4\},4\}$
+\end{axbox}
+
+\begin{axbox}{3.2}{(Equality of Sets)}
+  $A = B \iff \forall x \in A x \in B \land \forall y \in B y \in A$
+\end{axbox}
+
+\begin{axbox}{A.7}{(Substitution)}
+  If $a$ and $b$ are of the same type and $a = b$, then $f(a) = f(b)$ for all functions and operations $f$. The same applies to any property $P$.
+\end{axbox}
+
+It is important to note that the axiom of substitution applies to "$\in$". Therefore, it also applies to all operations we define exclusively in terms of it.
+
+\begin{axbox}{3.3}{(Empty Set)}
+  There exists a set $\emptyset \text{ (or $\{\}$) } ~s.t.~ \forall x, x \notin \emptyset$.
+\end{axbox}
+
+\begin{lebox}{3.1.5}{(Single Choice)}
+  Let $A$ be a non-empty set. $\Rightarrow \exists x ~s.t.~ x \in A$.
+  \begin{paragraph}{Proof:} 
+    (By contradiction)
+
+    Suppose $\nexists x \in A$.
+    $\to \forall x, x \notin A$.
+    Also by axiom 3.3, $x \notin A$.
+    
+    \[
+      \text{"Thus, } x \in A \iff x \in \emptyset.\text{"}
+    \]
+
+    (Every element of $A$ is in $\emptyset$ and vise versa; axiom 3.2.)
+    
+    Thus, $A = \emptyset$, a contradiction. $\square$
+  \end{paragraph}
+\end{lebox}
+
+\begin{axbox}{3.4}{(Singleton and Pair Sets)}
+  $\forall a ~\exists ~\{a\}; \forall y, y \in \{a\} \iff y = a$.
+  We call $\{a\}$ the singleton set whose element is $a$.
+
+  \medskip
+
+  $\forall a,b ~\exists~ \{a,b\}; \forall y, y \in \{a,b\} \iff (y = a \lor y = b)$
+\end{axbox}
+
+Because by axiom 3.2, $\{a,a\} = \{a\}$, the singleton set axiom is redundant.
+
+\begin{axbox}{3.5}{(Pairwise Union)}
+  Let $A$ and $B$ be sets. $\exists A \cup B ~s.t.~ x \in A \cup B \iff (x \in A \lor x \in B)$.
+\end{axbox}
+
+\begin{lebox}{3.1.12}{~}
+  $\forall a,b ~  \{a,b\} = \{a\} \cup \{b\}$.
+
+  $A \cup B = B \cup A$.
+
+  $(A \cup B) \cup C = A \cup (B \cup B)$.
+
+  \begin{paragraph}{Proof:}
+    I'm not going to write the proofs here, but the main idea seems to be to split the proof into two cases: for $A \cup B$, when $x \in A$ and when $x \in B$.
+  \end{paragraph}
+\end{lebox}
+\end{document}

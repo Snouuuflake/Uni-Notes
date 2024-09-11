@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+
+\definecolor{block-gray}{gray}{0.85}
+\newtcolorbox{blockquote}{colback=block-gray,grow to right by=-1mm,grow to left by=-1mm,boxrule=0pt,boxsep=0pt,breakable}
+
+\newtcolorbox{defbox}[3][]{%
+  colback=RoyalBlue!5!white,
+  coltitle=RoyalBlue!15!black,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{RoyalBlue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definition~#2~#3},
+	#1
+}
+
+\begin{document}
+\begin{defbox}{3.1.14}{(Subsets)}
+  Let A,B be sets. \(A \subseteq B \iff \forall x \in A, x \in B.\)
+
+  \(A \subsetneq B \iff A \subseteq B \land A \neq B.\)
+\end{defbox}
+
+\end{document}
