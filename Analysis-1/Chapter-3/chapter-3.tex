@@ -83,6 +83,24 @@
 	#1
 }
 
+\newtcolorbox{prbox}[3][]{%
+  colback=Lavender!5!white,
+  coltitle=Lavender!15!black,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{Lavender},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Proposition~#2~#3},
+	#1
+}
 
 
 
@@ -163,4 +181,27 @@ Because by axiom 3.2, $\{a,a\} = \{a\}$, the singleton set axiom is redundant.
     I'm not going to write the proofs here, but the main idea seems to be to split the proof into two cases: for $A \cup B$, when $x \in A$ and when $x \in B$.
   \end{paragraph}
 \end{lebox}
+
+\begin{defbox}{3.1.14}{(Subsets)}
+  Let $A, B$ be sets.
+
+  $A \subseteq B \iff \forall x \in A, x \in B$. ($A$ is a subset of $B$)
+
+  $A \subsetneq B \iff (A \subseteq B \land A \neq B)$. ($A$ is a proper subset of $B$)
+\end{defbox}
+
+Because all of the above is defined in terms of $\in$, it follows the axiom of substitution.
+
+\begin{prbox}{3.1.17}{(Sets are partially ordered by set inclusion)}
+  \vspace{-0.5cm}
+  \begin{enumerate}
+    \item $(A \subseteq B \land B \subseteq C) \Rightarrow A \subseteq C$.
+    \item $(A \subseteq B \land B \subseteq A) \Rightarrow A = B$.
+    \item $(A \subsetneq B \land B \subsetneq C) \Rightarrow A \subsetneq C$.
+  \end{enumerate}
+
+  \begin{paragraph}{Proof (1):}
+    We \textbf{choose} an arbetrary element of $A$, $x$. Since $A \subseteq B$, $x \in B$, and since $B \subseteq C$, $x \in C$. Thus any element of $A$ is an element of $C$. $\square$
+  \end{paragraph}
+\end{prbox}
 \end{document}
