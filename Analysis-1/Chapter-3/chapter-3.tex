@@ -2,6 +2,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{helvet}
 \usepackage{newtxsf}
@@ -204,4 +205,88 @@ Because all of the above is defined in terms of $\in$, it follows the axiom of s
     We \textbf{choose} an arbetrary element of $A$, $x$. Since $A \subseteq B$, $x \in B$, and since $B \subseteq C$, $x \in C$. Thus any element of $A$ is an element of $C$. $\square$
   \end{paragraph}
 \end{prbox}
+
+\begin{axbox}{3.6}{(Specification)}
+  Let $A$ be a set, and $P(x)$ $s.t.$ $\forall x \in A$, $P(x)$ is true or false.
+
+  $\exists~ \{ x \in A : P \text{ (is true)} \}$ s.t.
+
+  \[
+    y \in \left\{
+      x \in A: P(x)
+    \right\}
+    \iff
+    \left(
+      y \in A \land P(y)
+    \right)
+  \]
+
+\end{axbox}
+
+\begin{defbox}{3.1.22}{(Intersections)}
+  \[
+    S_1 \cap S_2 := \{ x \in S_1 : x \in S_2 \};
+  \]
+  \[
+    x \in S_1 \cap S_2 \iff x \in S_1 \land x \in S_2.
+  \]
+\end{defbox}
+
+\begin{defbox}{3.1.26}{(Difference sets)}
+  \[
+    A - B := \{ x \in A : x \notin B \}
+  \]
+\end{defbox}
+
+\begin{prbox}{3.1.27}{(Sets for a bolean algebra)}
+  \begin{enumerate}[label=\alph*)]
+    \item \textbf{Minimal Element}\\
+      $A \cup \emptyset = A \text{ and } A \cap \emptyset = \emptyset$ 
+    \item \textbf{Maximal Element}\\
+      $A \cup X = X \text{ and } A \cap X = A$ 
+    \item \textbf{Identity}\\
+      $A \cap A = A \text{ and } A \cup A = A$ 
+    \item \textbf{Conmutativity}\\
+      $A \cup B = B \cup A \text{ and } A \cap B = B \cap A$
+    \item \textbf{Associativity}\\
+      $(A \cup B) \cup C = A \cup (B \cup B) \text{ and } (A \cap B) \cap C = A \cap (B \cap C)$
+    \item \textbf{Distributivity}\\
+      $A \cap (B \cup C) = (A \cap B) \cup (A \cap C) \text{ and } \\ A \cup(B \cap C) = (A \cup B) \cap (A \cup B)$
+    \item \textbf{Partition}\\
+      $A \cup (X - A) = X \text { and } A \cap (X - A) = \emptyset$
+    \item \textbf{De Morgan Laws}\\
+      $X - (A \cup B) = (X - A) \cap (X - B) \text{ and } X - (A \cap B) = (X - A) \cup (X - B)$
+  \end{enumerate}
+\end{prbox}
+
+\begin{axbox}{3.7}{(Replacement)}
+  \vspace{-1cm}
+  \begin{center}
+    \begin{multline*}
+      z \in \{y: P(x,y) \text{ is true for some } x \in A\} \\
+      \iff P(x,z) \text{ is true for some } x \in A.
+    \end{multline*}
+  \end{center}
+
+  \begin{paragraph}{Example:}~\\
+    Let $P(x,y)$ be that $y = x++$. Then, $\{y : P(x,y) \text{ for some } x \in \{1,2,3\}\} = \{2,3,4\}$.
+  \end{paragraph}
+
+  \vspace{\medskip}
+
+  The above could be re-written in the forms:
+
+  \hspace{1cm}
+  $f(x) = x++, \{y : y = f(x) \text{ for some } x \in \{1,2,3\}\}$
+  
+  \hspace{1cm}
+  $\{f(x) : x \in \{1,2,3\}\}$
+    
+\end{axbox}
+
+\begin{axbox}{3.8}{(Infinity)}
+  There exists a set $\mathbb{N}$, whose elements are called \textit{natural numbers}, as well as an object $0$ in $\mathbb{N}$, and an object $n++$ assigned to every natural number $n \in \mathbb{N}$, such that the \textit{Peano axioms} hold.
+\end{axbox}
+
 \end{document}
+
