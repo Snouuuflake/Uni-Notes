@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumitem}
+\usepackage[margin=1.5in]{geometry}
 \usepackage{graphicx}
 \usepackage{helvet}
 \usepackage{newtxsf}
@@ -26,6 +27,127 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 
+
+\tcbset{
+%%%%%% HALF frame corner styles (produces half a corner) %%%%%%
+    % North West frame corner - Left segment only
+    frame corner northwest left/.style n args={5}{
+        frame code app={
+            % \shade[top color={#4},bottom color={#5}]
+            %     ([xshift={-#3},yshift={-#1}]frame.north west)
+            %     --++(0,{#1+#3})
+            %     --++({#2},{-#2})
+            %     --++(0,{-#1+#2-#3})
+            %     --cycle;
+            % \node at ([xshift={-#3},yshift={-#1}]frame.north west) {hi};
+            \draw [rounded corners, line width=2mm]
+                ([xshift={-#3},yshift={-#1}]frame.north west) --
+                ([xshift={-#3},yshift={#3}]frame.north west) --
+                ([xshift={#1},yshift={#3}]frame.north west);
+        }
+    },
+    % North West frame corner - Top segment only
+    frame corner northwest top/.style n args={5}{
+        frame code app={
+            \shade[left color={#4},right color={#5}]
+                ([xshift={#1},yshift={#3}]frame.north west)
+                --++({-#1-#3},0)
+                --++({#2},{-#2})
+                --++({#1-#2+#3},0)
+                --cycle;
+        }
+    },
+    % North East frame corner - Right segment only
+    frame corner northeast right/.style n args={5}{
+        frame code app={
+            \shade[top color={#4},bottom color={#5}]
+                ([xshift={#3},yshift={-#1}]frame.north east)
+                --++(0,{#1+#3})
+                --++({-#2},{-#2})
+                --++(0,{-#1+#2-#3})
+                --cycle;
+        }
+    },
+    % North East frame corner - Top segment only
+    frame corner northeast top/.style n args={5}{
+        frame code app={
+            \shade[right color={#4},left color={#5}]
+                ([xshift={-#1},yshift={#3}]frame.north east)
+                --++({#1+#3},0)
+                --++({-#2},{-#2})
+                --++({-#1+#2-#3},0)
+                --cycle;
+        }
+    },
+    % South West frame corner - Left segment only
+    frame corner southwest left/.style n args={5}{
+        frame code app={
+            \shade[bottom color={#4},top color={#5}]
+                ([xshift={-#3},yshift={#1}]frame.south west)
+                --++(0,{-#1-#3})
+                --++({#2},{#2})
+                --++(0,{#1-#2+#3})
+                --cycle;
+        }
+    },
+    % South West frame corner - Bottom segment only
+    frame corner southwest bottom/.style n args={5}{
+        frame code app={
+            \shade[left color={#4},right color={#5}]
+                ([xshift={#1},yshift={-#3}]frame.south west)
+                --++({-#1-#3},0)
+                --++({#2},{#2})
+                --++({#1-#2+#3},0)
+                --cycle;
+        }
+    },
+    % South East frame corner - Right segment only
+    frame corner southeast right/.style n args={5}{
+        frame code app={
+            \shade[bottom color={#4},top color={#5}]
+                ([xshift={#3},yshift={#1}]frame.south east)
+                --++(0,{-#1-#3})
+                --++({-#2},{#2})
+                --++(0,{#1-#2+#3})
+                --cycle;
+        }
+    },
+    % South East frame corner - Bottom segment only
+    frame corner southeast bottom/.style n args={5}{
+        frame code app={
+            \shade[right color={#4},left color={#5}]
+                ([xshift={-#1},yshift={-#3}]frame.south east)
+                --++({#1+#3},0)
+                --++({-#2},{#2})
+                --++({-#1+#2-#3},0)
+                --cycle;
+        }
+    },
+}
+
+\tcbset{
+    frame corners northwest rounded/.style n args={4}{
+        frame code app={
+            \draw [rounded corners=2mm, line width=2mm, color={#4}]
+                ([xshift={-#3},yshift={-#1}]frame.north west) --
+                ([xshift={-#3},yshift={#3}]frame.north west) --
+                ([xshift={#1},yshift={#3}]frame.north west);
+        }
+    },
+    % South East frame corner - Both segments (right and bottom)
+    frame corners southeast/.style n args={4}{
+        frame code app={
+            \draw [rounded corners=2mm, line width=2mm, color={#4}]
+                ([xshift={#3},yshift={#1}]frame.south east) --
+                ([xshift={#3},yshift={-#3}]frame.south east) --
+                ([xshift={-#1},yshift={-#3}]frame.south east);
+        }
+    },
+    frame corners lr rounded/.style n args={4}{
+        frame corners northwest rounded={#1}{#2}{#3}{#4},
+        frame corners southeast={#1}{#2}{#3}{#4},
+    }
+}
 
 \newtcolorbox{defbox}[3][]{%
   colback=RoyalBlue!5!white,
@@ -100,6 +222,7 @@
   rightrule=0mm,
   arc=0mm,
 	title={Proposition~#2~#3},
+  breakable,
 	#1
 }
 
@@ -204,6 +327,91 @@ Because all of the above is defined in terms of $\in$, it follows the axiom of s
   \begin{paragraph}{Proof (1):}
     We \textbf{choose} an arbetrary element of $A$, $x$. Since $A \subseteq B$, $x \in B$, and since $B \subseteq C$, $x \in C$. Thus any element of $A$ is an element of $C$. $\square$
   \end{paragraph}
+
+\vspace{7cm}
+
+  \begin{paragraph}{Proof (3):}
+    Since $(X \subsetneq Y)\Rightarrow (X \subseteq Y), A \subseteq B \land B \subseteq C$. Therefore, by Tao's proof of \textbf{1}, $A \subseteq C$.
+
+    \medskip
+
+    Thus, to show $A \subsetneq C$, we only need show $A \neq C$.
+
+    \medskip
+
+  \end{paragraph}
+
+  \begin{center}
+    \begin{tcolorbox}[enhanced,
+      frame hidden,
+      frame corners lr rounded={5mm}{4.3pt}{5pt}{Lavender},
+      width=8cm,
+      colback=white,
+      opacityback=1,
+      ]
+      If $(X \subseteq Y \land X \neq Y) \Rightarrow$
+      \[
+        \left[
+          \begin{array}{ccc}
+            (\forall x \in X, x \in Y) &
+            \land &
+            \sim (\forall y \in Y, y \in X)
+          \end{array}
+        \right]
+      \]
+      \vspace{-0.4cm}
+      \bgroup
+        \tiny
+        \begin{center}
+          \textcolor{Lavender!90!black}{
+            \begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}} c c}
+              If this were false, $X \nsubseteq Y$.
+            &
+            If this were true, $X = Y$.
+            \end{tabular*}
+          }
+        \end{center}
+      \egroup
+      \bgroup
+      \begin{center}
+        \footnotesize
+        \begin{tikzpicture}[scale=0.6]
+          \draw[thick,Lavender,rounded corners] 
+          (-0.6,-0.6) -- (2.6,-0.6) -- (2.6,1.6) -- (-0.6,1.6) -- cycle;
+          \draw[thick,Lavender!74!RoyalBlue,rounded corners]
+          (-0.85,-0.85) -- (3.85,-0.85) -- (3.85,1.85) -- (-0.85,1.85) -- cycle;
+          \node at (0,1) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_1$};
+          \node at (0,0) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_2$};
+          \node at (1,1) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_3$};
+          \node at (1,0) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_4$};
+          \node at (2,1) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_5$};
+          \node at (2,0) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!60!white]
+          {$x_6$};
+          \node at (3.25,1) [rounded corners,rectangle,minimum width=0.5cm,minimum height=0.5cm,fill=Lavender!49!white!74!RoyalBlue]
+          {$y_1$};
+          \node at (3,0) [color=Lavender]
+          {\textbf{X}};
+          \node at (4.2,1) [color=Lavender!74!RoyalBlue]
+          {\textbf{Y}};
+        \end{tikzpicture}
+      \end{center}
+      \egroup
+
+      $\therefore \exists \text{ some } y \in Y ~s.t.~ y \notin X$.
+    \end{tcolorbox}
+  \end{center}
+
+  $\therefore (A \subsetneq B) \Rightarrow \exists b \in B ~s.t.~ b \notin A$
+
+  $\therefore (B \subsetneq C) \Rightarrow b \in C \land \exists c \in C ~s.t.~ (c \notin B \land c \notin A \text{ because } A \subseteq B)$
+
+  $\therefore b,c \notin A \land b,c \in C \therefore A \neq C ~\square$
+
 \end{prbox}
 
 \begin{axbox}{3.6}{(Specification)}
@@ -272,7 +480,7 @@ Because all of the above is defined in terms of $\in$, it follows the axiom of s
     Let $P(x,y)$ be that $y = x++$. Then, $\{y : P(x,y) \text{ for some } x \in \{1,2,3\}\} = \{2,3,4\}$.
   \end{paragraph}
 
-  \vspace{\medskip}
+  \medskip
 
   The above could be re-written in the forms:
 
