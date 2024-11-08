@@ -238,6 +238,8 @@
 
 \maketitle
 
+\section*{Fundamentals}
+
 \begin{defbox}{3.1.1}{(Sets, "$\in$")}
   A set is any unordered collection of objects. If $x$ is an object and $A$ is a set, $x \in A \lor x \notin A$.
 \end{defbox}
@@ -495,6 +497,67 @@ Because all of the above is defined in terms of $\in$, it follows the axiom of s
 \begin{axbox}{3.8}{(Infinity)}
   There exists a set $\mathbb{N}$, whose elements are called \textit{natural numbers}, as well as an object $0$ in $\mathbb{N}$, and an object $n++$ assigned to every natural number $n \in \mathbb{N}$, such that the \textit{Peano axioms} hold.
 \end{axbox}
+
+\newpage
+
+\section*{Functions}
+
+\begin{defbox}{3.3.1}{(Functions)}
+  Let $X,Y$ be sets and $P(x,y)$ be a property of an objects $x \in X, y \in Y ~s.t.~ \forall x ~ \exists! y ~s.t.~ P(x,y)$. We now define the function $f: X \to Y$, defined by $P$ on the domain $X$ and codomain $Y$ to be the object which for any input $x \in X$, assigns an output $f(x) \in Y$.\\
+
+  \medskip
+
+  In short:
+  \[
+    y = f(x) \iff P(x,y)
+  \]
+
+  \medskip
+
+  \textbf{Examples}
+
+  One can simply derive a property from a function definition $f(x) = x++$ as $P(x,y) \iff y = x++$.
+
+  \medskip
+
+  For $P(x,y) \iff y++ = x$, $f$ must be defined $f: \mathbb{N}-\{0\} \to \mathbb{N}$, since $0-1 \notin \mathbb{N}$, leaving $f(0)$ undefined.
+
+  \bigskip\bigskip
+
+  Functions can be defined explicitly by defining an expression for $f(x)$, or implicitly by only defining $P(x.y)$.
+
+  \bigskip\bigskip
+
+  \textit{For explicitness' sake, Tao's definition \textbf{does} imply that unequal inputs do not necesarily mean unequal outputs.}
+\end{defbox}
+
+\begin{defbox}{3.3.8}{(Equality of Functions)}
+  Let $f: X \to Y$ and $g: X' \to Y'$.
+  \[
+    f = g \iff (X = X' \land Y = Y') \land (\forall x \in X, f(x) = g(x))
+  \]
+\end{defbox}
+
+\begin{defbox}{3.3.13}{(Composition)}
+  Let $f: W \to X$ and $g: Y \to Z$.
+  \[
+    (g \circ f)(x) := g(f(x)) \iff X = Y
+  \]
+\end{defbox}
+
+\begin{lebox}{3.3.15}{(Composition is Associative)}
+  Let $f,g,h$ be functions such that the following composition is possible.
+  \[
+    \Rightarrow f \circ (g \circ h) = (f \circ g) \circ h
+  \]
+\end{lebox}
+
+\begin{defbox}{3.3.17}{(One-to-one Functions)}
+  If $f$ is one-to-one (injective), 
+  \[
+    f(x) = f(x') \iff x = x'
+  \]
+\end{defbox}
 
 \end{document}
 
