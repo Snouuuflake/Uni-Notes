@@ -4,26 +4,27 @@
 \usepackage[margin=1.4in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
-% \usepackage[macchiato, textcolor=true, pagecolor=true]{catppuccinpalette}  
+% \usepackage[macchiato, textcolor=true, pagecolor=true]{catppuccinpalette}
 \usepackage[no-math]{fontspec}
-\usepackage{gruvboxpalette} 
+\usepackage{gruvboxpalette}
 \usepackage{hyperref}
 \usepackage{newtxsf}
-\usepackage[explicit]{titlesec}  
-\usepackage{tikz}  
-% \usepackage[most]{tcolorbox}  
+\usepackage{varwidth}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+% \usepackage[most]{tcolorbox}
 \usetikzlibrary{calc}
 \usepackage{tabularray}
 \DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
 \DefTblrTemplate{capcont}{default}{}
 \DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
 \UseTblrLibrary{counter}
-\hypersetup{  
-  colorlinks  = true,   
-  urlcolor    = CtpBlue,   
-  linkcolor   = CtpBlue,   
-  citecolor   = CtpBlue   
-}  
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = CtpBlue,
+  linkcolor   = CtpBlue,
+  citecolor   = CtpBlue
+}
 \usepackage[most]{tcolorbox}
 
 \setmainfont{NotoSans-Regular}[
@@ -40,6 +41,12 @@ BoldItalicFont = NotoSans-BoldItalic,
 \def \T {Graph Theory and Modeling}
 \def \S {Chapter 1: Basic Notions of Graphs}
 
+\tikzset{
+  defaultNode/.style={%
+    circle, minimum size=8pt, draw,
+  }
+}
+
 \begin{document}
 \begin{tikzpicture}
   \node[circle, minimum size=12pt, fill=blue, draw]
@@ -53,7 +60,7 @@ BoldItalicFont = NotoSans-BoldItalic,
     (dot3) edge[bend right] (dot2.east)
     (dot2) edge[bend right] (dot3)
     ;
-  \node[anchor=west] (titlepicture) at (1.3,0.4) {
+  \node[anchor=west] (titlepicture) at (1.3,0.4) { 
       \begin{tikzpicture}
         \node[anchor=west] 
         (title) at (0,0.9) {\Huge\bfseries\T};
@@ -64,18 +71,20 @@ BoldItalicFont = NotoSans-BoldItalic,
     ;
 \end{tikzpicture}
 
-\section{Basic Terms}
+\section*{Basic Terms}
+\vspace{-1cm}
+
 \begin{longtblr}{
     colspec={@{}Q[3cm,cmd=\textbf] X@{}},
     rowsep={7pt}
   }
   Graph
-  & A graph is defined as a pair of sets: $(V, E)$, where $V$ is the set of nodes (vertices) and $E$ is a set of pairs of members of $V$ (edges). If the graph is directed, the edges are also known as arcs.
+  & A graph is defined as a pair of sets: $(V, E)$, where $V$ is the set of nodes (vertices) and $E$ is a set of pairs of members of $V$ (edges). If the graph is directed, the edges are also known as arcs. An arc $(v,u)$ is said to have a tail end at $v$ and a head end at $v$.
   \\
   Loop
-  & An arista $(u,u)$ for some $u \in V$ \hspace{5mm}
+  & An edge $(u,u)$ for some $u \in V$ \hspace{5mm}
   \begin{tikzpicture}[baseline=0mm]
-    \node[circle, minimum size=8pt, fill=blue, draw]
+    \node[defaultNode, fill=blue, ]
     (dot1) at (0,0) {};
     \draw[thick,>=latex,->,line cap=round] ($(dot1.east) + (0.02,0)$) .. controls (0.6,0.8) and (0.1,0.3) .. (dot1.80)
     ;
@@ -92,11 +101,11 @@ BoldItalicFont = NotoSans-BoldItalic,
       \begin{tikzpicture}[]
         \node[anchor=east] (graph1) at (0,0) {%
           \begin{tikzpicture}
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot1) at (0.4,0.7) {};
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot2) at (0,0) {};
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot3) at (0.8,0) {};
             \draw[thick,>=latex,->,line cap=round] 
             (dot1) edge[bend right] (dot2)
@@ -116,11 +125,11 @@ BoldItalicFont = NotoSans-BoldItalic,
         \node[anchor=center] (to) at (1,0) {\LARGE$\to$};
         \node[anchor=west] (graph2) at (2,0) {%
           \begin{tikzpicture}
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot1) at (0.4,0.7) {};
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot2) at (0,0) {};
-            \node[circle, minimum size=8pt, fill=blue, draw]
+            \node[defaultNode, fill=blue, ]
             (dot3) at (0.8,0) {};
             \draw[thick,>=latex,line cap=round] 
             (dot1) edge[bend right] (dot2)
@@ -139,13 +148,13 @@ BoldItalicFont = NotoSans-BoldItalic,
   Trail
   & A succession (node, edge, node, edge, ...)
   \\
-  Circuit  (Closed Trail)
+  {Circuit \\ (Closed Trail)}
   & A trail in which the first and last nodes are the same.
   \\
   Path
   & A trail where all nodes are distinct
   \\
-  Cycle (Simple circuit)
+  {Cycle \\ (Simple circuit)}
   & A circuit in which all nodes but the first and last are distinct.
   \\
   Length
@@ -158,16 +167,105 @@ BoldItalicFont = NotoSans-BoldItalic,
   & {
     Let $G = (V,E)$ the adjacency function $\Gamma$ is defined:
 
-    $$ \Gamma(u): V \to \mathcal{P}(V) = \{v \in V: (u,v) \in E\} \forall u \in V $$
+    \begin{math}
+      \Gamma(u): V \to \mathcal{P}(V) = \{v \in V: (u,v) \in E\} \forall u \in V 
+    \end{math}
   }
   \\
   Adjacency Matrix
-  & Let $G = (V,E) ~s.t.~ V = \{v_1, v_2,\dots,v_n\}$. The adjacency matrix $A$ is a square matrix of size $n \times n$ such that $\forall a_{ij}, a_{ij} = \left\{
+  & {Let $G = (V,E) ~s.t.~ V = \{v_1, v_2,\dots,v_n\}$. The adjacency matrix $A$ is a square matrix of size $n \times n$ such that $\forall a_{ij}, a_{ij} = \left\{
     \begin{array}{ll}
       1 & (v_i, v_j) \in V \\
       0 & (v_i, v_j) \notin V \\
     \end{array}
   \right.$
+  }
+  \\
+  {Grade \\ (not directed)}
+  & {
+    The grade of a node $v$, $d(v)$ is the number of edges that are incident with it. *A loop adds two units to the grade, not one.
+    \medskip
+
+    If the grade of a node is 0, it is called isolated.
+    \medskip
+    
+    The maximum degree of a graph $G$ is written $\Delta(G)$, while the minimum is written $\delta(G)$.
+  }
+  \\
+  {Grade \\ (directed)}
+  & {
+    The indegree of a node v, $d^-(v)$, is the number of edge head ends adjacent to it.
+    \medskip
+
+    The outdegree, $d^-(v)$, conversely, is the number of edge tail ends adjacent to it.
+  }
+  \\
+  {
+    Obtaining degree from adjacency matrix
+  }
+  & {
+    The degree of a node $i$ from a undirected graph can be obtained by summing either the column or row $i$ of the graph's adjacency matrix, and adding 1 if the node has a loop.
+    \medskip
+
+    If the graph is directed, the outdegree can be obtained by summing the row $i$ and the indegree can be obtained by summing the column $i$.
+  }
+  \\
+  Handshaking Lemma
+  & {
+    Let $G = (V,E)$ be a undirected graph. $\sum_{v \in V} d(v) = 2\#E$.
+    \medskip
+
+    $\therefore$ the number of nodes with an uneven grade is even.
+    \medskip
+
+    Let $G$ be now be a directed graph. $\sum_{v \in V} d^+(v) = \sum_{v \in V} d^-(v) = \#E$
+  }
+\end{longtblr}
+
+\section*{Subgraphs}
+Let $G$ and $H$ be graphs.
+
+\vspace{-1cm}
+\medskip
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf] X@{}},
+    rowsep={7pt}
+  }
+  Subgraph
+  & {
+    $H$ is a subgraph of $G$ $\iff V(H) \subset V(G) \land E(H) \subset E(G)$
+  }
+  \\
+  Spanning Subgraph
+  & $H$ is a spanning subgraph of $G$ $\iff$ $H$ is a subgraph of $G$ $\land~ V(H) = V(G)$
+  \\
+  Induced subgraph
+  & {
+    $H$ is a subgraph of $G$ induced by $E'$ ($H = G[E']$) for some 
+    $E' \subset E(G)$ $\iff E(H) = E' \land V(H) = \{v \in V(G): v \text{ is and endpoint of some } e \in E\}$
+    \medskip
+
+    $H$ is a subgraph of $G$ induced by $V'$ ($H = G[V']$) for some 
+    $V' \subset V(G)$ $\iff V(H) = V' \land E(H) = \{e \in E: \text{the endpoints of e}\}$
+  }
+  \\
+  Subtraction
+  & {
+    Let $V' \subset V(G)$, $E' \subset E(G)$.
+
+    \begin{varwidth}[t]{\linewidth}
+      \begin{itemize}
+        \item 
+          $G - V' = (V - V', R - \{e \in E: e_1 \in V' \lor e_2 \in V'\})$
+        \item
+          $G - E' = (V, E - E')$
+        \item
+          Let $e \in E'$. $G - e = G - \{e\}$
+      \end{itemize}
+    \end{varwidth}
+
+  }
 \end{longtblr}
 
 \end{document}
