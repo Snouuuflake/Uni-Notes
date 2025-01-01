@@ -1,3 +1,5 @@
+ %! TeX program = lualatex
+
 \documentclass[letterpaper]{article}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amsmath}
@@ -5,9 +7,15 @@
 \usepackage{enumitem}
 \usepackage[margin=1.5in]{geometry}
 \usepackage{graphicx}
-\usepackage{helvet}
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
 \usepackage{newtxsf}
 \usepackage[most]{tcolorbox}
+
+\usepackage{fontspec}
+
+\usetikzlibrary{decorations.pathmorphing}
+
 
 \graphicspath{ {../images/} }
 
@@ -25,7 +33,6 @@
 \date{\vspace{-1cm}}
 \author{~}
 
-\renewcommand{\familydefault}{\sfdefault}
 
 
 \tcbset{
@@ -149,6 +156,24 @@
     }
 }
 
+% \newtcolorbox{hdefbox}[3][]{%
+%   colback=RoyalBlue!5!white,
+%   coltitle=RoyalBlue!15!black,
+%   title filled=false,
+% 	enhanced,
+%   detach title,
+%   tile,
+%   before upper={\tcbtitle\medskip\\},
+%   borderline={2pt}{0pt}{
+%     draw=blue!40!black,
+%     decorate,
+%     decoration={random steps,segment length=2pt,amplitude=0.4pt}
+%   },
+%   arc=0mm,
+% 	title={Definition~#2~#3},
+% 	#1
+% }
+
 \newtcolorbox{defbox}[3][]{%
   colback=RoyalBlue!5!white,
   coltitle=RoyalBlue!15!black,
@@ -233,8 +258,15 @@
 
 
 
-
 \begin{document}
+
+\setmainfont{NotoSans-Regular}[
+  Path           = /home/snouflake/.fonts/ ,
+  Extension      = .ttf ,
+  BoldFont       = NotoSans-Bold ,
+  ItalicFont     = NotoSans-Italic ,
+  BoldItalicFont = NotoSans-BoldItalic,
+  ] 
 
 \maketitle
 
@@ -558,6 +590,38 @@ Because all of the above is defined in terms of $\in$, it follows the axiom of s
     f(x) = f(x') \iff x = x'
   \]
 \end{defbox}
+
+\begin{defbox}{3.3.21}{(Onto Functions)}
+  A function is onto (surjective) if
+  \[
+    \forall y \in Y,~ \exists x \in X ~s.t.~ f(x) = y
+  \]
+\end{defbox}
+
+\begin{defbox}{3.3.21}{(Bijective Functions)}
+  A function is bijective (invertible) if it is both injective and surjective.
+\end{defbox}
+
+\begin{defbox}{3.3.?}{(Inverse Functions)}
+  If $f$ if bijective, $\forall y \in Y,~ \exists! x \in X ~s.t.~ f(x) = y$. This $x$ is given by the inverse function $f^{-1}(y)$, defined $:Y \to X$.
+\end{defbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 

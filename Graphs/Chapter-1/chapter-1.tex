@@ -1,0 +1,173 @@
+%! TeX program = lualatex
+
+\documentclass[letterpaper]{article}
+\usepackage[margin=1.4in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage[macchiato, textcolor=true, pagecolor=true]{catppuccinpalette}  
+\usepackage[no-math]{fontspec}
+\usepackage{gruvboxpalette} 
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}  
+\usepackage{tikz}  
+% \usepackage[most]{tcolorbox}  
+\usetikzlibrary{calc}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{  
+  colorlinks  = true,   
+  urlcolor    = CtpBlue,   
+  linkcolor   = CtpBlue,   
+  citecolor   = CtpBlue   
+}  
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T {Graph Theory and Modeling}
+\def \S {Chapter 1: Basic Notions of Graphs}
+
+\begin{document}
+\begin{tikzpicture}
+  \node[circle, minimum size=12pt, fill=blue, draw]
+    (dot1) at (0.8,1) {};
+  \node[circle, minimum size=12pt, fill=green, draw]
+    (dot2) at (0,0.4) {};
+  \node[circle, minimum size=12pt, fill=aqua, draw]
+    (dot3) at (0.6,-0.2) {};
+  \draw[thick,>=latex,->] 
+    (dot1) edge[bend right] (dot2.north)
+    (dot3) edge[bend right] (dot2.east)
+    (dot2) edge[bend right] (dot3)
+    ;
+  \node[anchor=west] (titlepicture) at (1.3,0.4) {
+      \begin{tikzpicture}
+        \node[anchor=west] 
+        (title) at (0,0.9) {\Huge\bfseries\T};
+        \node[anchor=west] 
+        (subtitle) at (0,0) {\Large\bfseries\S};
+      \end{tikzpicture}
+    }
+    ;
+\end{tikzpicture}
+
+\section{Basic Terms}
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf] X@{}},
+    rowsep={7pt}
+  }
+  Graph
+  & A graph is defined as a pair of sets: $(V, E)$, where $V$ is the set of nodes (vertices) and $E$ is a set of pairs of members of $V$ (edges). If the graph is directed, the edges are also known as arcs.
+  \\
+  Loop
+  & An arista $(u,u)$ for some $u \in V$ \hspace{5mm}
+  \begin{tikzpicture}[baseline=0mm]
+    \node[circle, minimum size=8pt, fill=blue, draw]
+    (dot1) at (0,0) {};
+    \draw[thick,>=latex,->,line cap=round] ($(dot1.east) + (0.02,0)$) .. controls (0.6,0.8) and (0.1,0.3) .. (dot1.80)
+    ;
+  \end{tikzpicture}
+  \\
+  Simple Graph
+  & A graph without loops
+  \\
+  Subadjacent graph
+  & 
+  {
+    Let $G = (V,E)$ be a directed graph. Its subadjacent graph $\bar{G}$ is an undirected graph that has an edge $(u,v)$ for every arc $(u,v)$. In the case of $G$ having arcs $(u,v)$ and $(v,u)$, both are replaced by a single edge $(u,v)$.
+
+      \begin{tikzpicture}[]
+        \node[anchor=east] (graph1) at (0,0) {%
+          \begin{tikzpicture}
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot1) at (0.4,0.7) {};
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot2) at (0,0) {};
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot3) at (0.8,0) {};
+            \draw[thick,>=latex,->,line cap=round] 
+            (dot1) edge[bend right] (dot2)
+            ;
+            \draw[thick,>=latex,->,line cap=round] 
+            (dot2) edge[bend right] (dot3)
+            ;
+            \draw[thick,>=latex,->,line cap=round] 
+            (dot3) edge[bend right] (dot1)
+            ;
+            \draw[thick,>=latex,->,line cap=round] 
+            (dot1) edge[bend right] (dot3)
+            ;
+          \end{tikzpicture}
+        };
+
+        \node[anchor=center] (to) at (1,0) {\LARGE$\to$};
+        \node[anchor=west] (graph2) at (2,0) {%
+          \begin{tikzpicture}
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot1) at (0.4,0.7) {};
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot2) at (0,0) {};
+            \node[circle, minimum size=8pt, fill=blue, draw]
+            (dot3) at (0.8,0) {};
+            \draw[thick,>=latex,line cap=round] 
+            (dot1) edge[bend right] (dot2)
+            ;
+            \draw[thick,>=latex,line cap=round] 
+            (dot2) edge[bend right] (dot3)
+            ;
+            \draw[thick,>=latex,line cap=round] 
+            (dot3) edge[bend right] (dot1)
+            ;
+          \end{tikzpicture}
+        };
+  \end{tikzpicture}
+  }
+  \\
+  Trail
+  & A succession (node, edge, node, edge, ...)
+  \\
+  Circuit  (Closed Trail)
+  & A trail in which the first and last nodes are the same.
+  \\
+  Path
+  & A trail where all nodes are distinct
+  \\
+  Cycle (Simple circuit)
+  & A circuit in which all nodes but the first and last are distinct.
+  \\
+  Length
+  & The number of edges in a trail
+  \\
+  Power Set
+  & The power set $\mathcal{P}(S)$ is the set of all subsets of $S$, including $S$
+  \\
+  Adjacency Function
+  & {
+    Let $G = (V,E)$ the adjacency function $\Gamma$ is defined:
+
+    $$ \Gamma(u): V \to \mathcal{P}(V) = \{v \in V: (u,v) \in E\} \forall u \in V $$
+  }
+  \\
+  Adjacency Matrix
+  & Let $G = (V,E) ~s.t.~ V = \{v_1, v_2,\dots,v_n\}$. The adjacency matrix $A$ is a square matrix of size $n \times n$ such that $\forall a_{ij}, a_{ij} = \left\{
+    \begin{array}{ll}
+      1 & (v_i, v_j) \in V \\
+      0 & (v_i, v_j) \notin V \\
+    \end{array}
+  \right.$
+\end{longtblr}
+
+\end{document}
