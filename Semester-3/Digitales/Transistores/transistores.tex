@@ -1,11 +1,11 @@
 %! TeX program = lualatex
-%tags! intro first class digitales
+%tags! transistor trans diode dio
 \documentclass[letterpaper]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[no-math]{fontspec}
-\usepackage{gruvboxpalette}
+\usepackage[fg,bg]{gruvboxpalette}
 \usepackage{hyperref}
 \usepackage{newtxsf}
 \usepackage[explicit]{titlesec}
@@ -60,7 +60,7 @@ BoldItalicFont = NotoSans-BoldItalic,
 \usepackage{mathastext}
 
 \def \T{Sistemas Digitales}
-\def \S{2025-01-15}
+\def \S{Componentes Básicos}
 
 \begin{document}
 \begin{tikzpicture}[inner sep=0pt,color=font]
@@ -74,35 +74,15 @@ BoldItalicFont = NotoSans-BoldItalic,
     colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
     rowsep={7pt}
   }
-  Sistema digital
-  & 
-  \begin{minipage}{\linewidth}
-  Un sistema que utiliza numeros posicionales discretos
+  Diodo
+  & {
+    Permite que la corriente fluya en una sola dirección
+    \medskip
 
-  \begin{center}
-    \begin{tikzpicture}[>=latex]
-      \node (d3) at (0,0) {\strut2};
-      \node[anchor=west] (d2) at ([xshift=-5pt] d3.east) {\strut1};
-      \node[anchor=west] (d1) at ([xshift=-5pt] d2.east) {\strut1};
-      \node[anchor=west,xshift=-6pt] (base) at (d1.east) {\strut$_{3}$};
-      \coordinate (r) at (1.2,0);
-      \draw[thick] (d1.south) to ($(d1.south) + (0,-0.3)$) coordinate (t1) edge[->] (t1-|r) coordinate (a1);
-      \draw[thick] (d2.south) to ($(d2.south) + (0,-0.6)$) coordinate (t2) edge[->] (t2-|r) coordinate (a2);
-      \draw[thick] (d3.south) to ($(d3.south) + (0,-0.9)$) coordinate (t3) edge[->] (t3-|r) coordinate (a3);
-      \node[anchor=west] (math1) at (t1-|r) {\strut$1 \times 3^0 = $};
-      \node[anchor=west] (math2) at (t2-|r) {\strut$1 \times 3^1 = $};
-      \node[anchor=west] (math3) at (t3-|r) {\strut$2 \times 3^2 = $};
-      \node[anchor=west,text width=0.5cm,align=right] (res1) at (math1.east) {\strut$1$};
-      \node[anchor=west,text width=0.5cm,align=right] (res2) at (math2.east) {\strut$3$};
-      \node[anchor=west,text width=0.5cm,align=right] (res3) at (math3.east) {\strut$18$};
-      \draw[thick] ([yshift=3pt] res3.south west) -- ([yshift=3pt] res3.south east);
-      \node[inner sep=0pt,anchor=north,text width=0.5cm,align=right]  at (res3.south) {\strut$22$};
-
-    \end{tikzpicture}
-  \end{center}
-  \end{minipage}
+  }
 \end{longtblr}
 
 
  
 \end{document}
+
