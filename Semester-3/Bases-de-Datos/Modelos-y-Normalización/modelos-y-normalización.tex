@@ -93,12 +93,13 @@ BoldItalicFont = NotoSans-BoldItalic,
   \end{minipage}
 \end{longtblr}
 
-\subsection*{Modelo conceptual}
 \vspace{-1cm}
 \begin{longtblr}{
     colspec={@{}Q[h,4cm,cmd=\textbf] X[t]@{}},
     rowsep={10pt},
   }
+  ~ & {\Large\textbf{Modelo Conceptual}}
+  \\
   Objetivo
   & \begin{minipage}{\linewidth}
     \begin{itemize}
@@ -246,6 +247,109 @@ BoldItalicFont = NotoSans-BoldItalic,
 
     (student\_id, class\_id, class\_name) $\to$ (student\_id, class\_id) \& (class\_id, class\_name)
   }
+  \\
+  & {\Large\textbf{Modelo Lógico}}
+  \\
+  Objetivo
+  & {
+    Representar la información de manera logica con tablas, relaciones y restricciónes
+  }
+  \\
+  Modelo Relacional
+  & {
+    Modelo para gestionar bases de datos propuesto por Edgar F. Codd. en 1970
+    \medskip
+  }
+  \\
+  Estructura
+  & {
+    Los datos dentro de las tablas se almacenan registros (filas), los cuales representan un objeto real, cada uno con varios atributos (columnas, campos).
+    \medskip
+
+    Cada fila se debe identificar con una \textbf{llave primaria} única.
+    \medskip
+
+    Las relaciones se establecen con llaves foráneas, columnas con las llaves primarias de otra tabla.
+    \medskip
+
+    Las relaciones pueden tener cardinalidad
+  }
+  \\
+  Propiedades de las Tablas
+  & {
+    Cada tabla tiene un nombre y éste es distinto del nombre de todas las demás.
+		\medskip
+
+    Los valores de los campos son atómicos: encada registro, cada campo toma un solo valor.
+		\medskip
+
+    No hay dos camposen la misma tabla que se llamen igual.
+		\medskip
+
+    El orden de los campos no importa.
+		\medskip
+
+    Cada registroes distinta a las demás.
+		\medskip
+
+    El orden de los registros no importa.
+  }
+  \\
+  NULL
+  & La ausencia de un valor
+  \\
+  & {\Large\textbf{Integridad de datos}}
+  \\
+  & \begin{minipage}{\linewidth}
+    \begin{itemize}
+      \item Evita la duplicidad 
+      \item Impide almacenar datos incorrectos 
+      \item Impide altración de datos 
+      \item Impide la eliminación de información
+    \end{itemize}
+  \end{minipage}
+
+  \\
+  Reglas de integridad de datos
+  & \begin{minipage}{\linewidth}
+    \begin{enumerate}
+      \item Restricción de dominios (tipos de dato) 
+      \item Regla de integridad de entidades: Ninguna llave primaria puede ser nula 
+      \item Regla de integridad referencial: Cant make a referenced key null?
+    \end{enumerate}
+  \end{minipage}
+  \\
+  Reglas de nulos
+  & \begin{minipage}{\linewidth}
+    \begin{enumerate}
+      \item Ningún campo de llave externa puede ser nulo
+      \item Regla de integridad de entidades: Ninguna llave primaria puede ser nula 
+      \item Regla de integridad referencial: Cant make a referenced key null?
+    \end{enumerate}
+  \end{minipage}
+  \\
+  Reglas de llaves externas: Borrado
+  & \begin{minipage}{\linewidth}
+    \begin{enumerate}
+      \item Restringir: No se permite borrar el registro de la tabla dominante (\# 1) si existe un registro en una tabla subordinada (\#n)
+      \item Propagar: El eliminar la dominante, el DBMS borra la subordinada
+      \item Anular: El eliminar la dominante, convierte las referencias en la tabla subordinada a NULL
+    \end{enumerate}
+  \end{minipage}
+  \\
+  Reglas de llaves externas: Modificación
+  & \begin{minipage}{\linewidth}
+    \begin{enumerate}
+      \item Restringir: Lo mismo cambiando eliniar por modificar
+      \item Propagar: 
+      \item Anular:
+    \end{enumerate}
+  \end{minipage}
+  \\
+  MISSING SYMBOLOGY
+
+
+
 \end{longtblr}
 
 
