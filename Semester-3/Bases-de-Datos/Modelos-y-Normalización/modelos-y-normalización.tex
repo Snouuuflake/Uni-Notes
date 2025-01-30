@@ -346,10 +346,84 @@ BoldItalicFont = NotoSans-BoldItalic,
     \end{enumerate}
   \end{minipage}
   \\
-  MISSING SYMBOLOGY
+  & MISSING SYMBOLOGY
+  \\
+  Reglas de negocio
+  & {Restriciones espefíficas, dependientes del uso en la vida real, que se imponen a los datos
+  }
+  \\
+  & {\Large\textbf{Álgebra relacional}}
+  \\
+  Definición
+  & Un conjunto de operaciones que se aplican a relaciones (tablas) para producir nuevas tablas como resultados.
+  \\
+  Operaciones de conjuntos
+  & \begin{minipage}{\linewidth}
+    \begin{itemize}
+      \item Unión
+      \item Intersección 
+      \item Diferencia
+    \end{itemize}
+  \end{minipage}
+  \\
+  Operaciones que remueven parte de una tabla
+  & \begin{minipage}{\linewidth}
+    \begin{itemize}
+      \item Proyección: Table $\to$ new table with only some columns
+      \item Selección: Table $\to$ new table with only some rows
+    \end{itemize}
+  \end{minipage}
+  \\
+  Producto carteseano
+  & \begin{minipage}{\linewidth}
+    $\left\{(r,s) \forall r \in R, s \in S\right\}$
+    \medskip
 
+    \begin{tikzpicture}
+      \node[align=center] (R) at (0,0) {\textbf R\\
 
+          \begin{tblr}{
+            colspec={c c},
+          }
+            A & B \\
+            \hline
+            $a_1$ & $b_1$ \\
+            $a_2$ & $b_2$ \\
+          \end{tblr}
+        };
+      \node[align=center] (S) at (4,0) {\textbf S\\
 
+          \begin{tblr}{
+            colspec={c c},
+          }
+            C & D \\
+            \hline
+            $c_1$ & $d_1$ \\
+            $c_2$ & $d_2$ \\
+          \end{tblr}
+        };
+      \node[align=center] (RxS) at (2,-3) {\textbf R$\times$\textbf S\\
+
+          \begin{tblr}{
+            colspec={c c c c},
+          }
+            A & B &C & D \\
+            \hline
+            $a_1$ & $b_1$ & $c_1$ & $d_1$\\
+            $a_1$ & $b_1$ & $c_2$ & $d_2$\\
+            $a_2$ & $b_2$ & $c_1$ & $d_1$\\
+            $a_2$ & $b_2$ & $c_2$ & $d_2$\\
+            \hline
+          \end{tblr}
+        };
+    \end{tikzpicture}
+  \end{minipage}
+  \\
+  Natrual join
+  & Producto cartesiano pero solo con los renglones que cumplan con cierta comparación "==" entre dos columnas
+  \\
+  Theta join
+  & Lo mismo pero con mayor, menor, etc.
 \end{longtblr}
 
 
