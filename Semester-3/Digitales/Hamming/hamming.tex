@@ -1,0 +1,181 @@
+%! TeX program = lualatex
+%tags! código code hamming
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{circuitikz}
+\usepackage[no-math]{fontspec}
+\usepackage[fg,bg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Sistemas Digitales}
+\def \S{Código de paridad}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,line width=0pt] 
+    (title) at (0,0) {\huge\bfseries\noindent\T\\\Large\bfseries\S}
+    ;
+\end{tikzpicture}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
+    rowsep={7pt}
+  }
+  Código de paridad
+  & \begin{minipage}{\linewidth}
+  Descubre errores
+  \medskip
+
+  $\text{<número binario>}P$ donde $P = 1 \iff$ el número es non.
+
+  \end{minipage}
+  \\
+  Código de hamming
+  & \begin{minipage}{\linewidth}
+    $D$ son los digitos del número original.
+
+    $
+    D_7
+    D_6
+    D_5
+    P_4
+    D_3
+    P_2
+    P_1
+    $ *P incrementa por potencias de 2
+    \medskip
+
+    $
+    P_1 = 
+    D_3 \oplus
+    D_5 \oplus
+    D_7 \oplus
+    D_9 \oplus
+    D_{11} \oplus
+    \dots
+    $ 
+    ($D_3$ sí, $P_4$ no, $D_5$ sí, $D_6$ no, $D_7$ sí \dots)
+    \medskip
+
+    $
+    P_2 = 
+    D_3 \oplus
+    D_6 \oplus
+    D_7 \oplus
+    D_{10} \oplus
+    D_{11} \oplus
+    \dots
+    $
+    % ($D_3$ sí, $P_4$ no, y de dos en dos- $D_6$ y $D_7$ sí, $D_8$ y $D_9 no$, $D_{10}$ y $D_{11}$ sí \dots)
+    (de dos en dos, empezando por $P_2$, el cual no cuenta: $D_3$ sí, $P_4$ y $D_5$ no $D_6$ y $D_7$ sí, $D_8$ y $D_9 no$, $D_{10}$ y $D_{11}$ sí \dots)
+    \medskip
+
+    $
+    P_4 = 
+    D_5 \oplus
+    D_6 \oplus
+    D_7 \oplus
+    D_{12} \oplus
+    \dots
+    $
+    (de cuatro en cuatro, empezando por $P_4$, el cual no cuenta: $D_5, 6, 7$ sí, $8,9,10,11$ no, $12,13,14,15$ sí \dots)
+    \medskip
+
+    $
+    C_1 = 
+    P_1 \oplus
+    D_3 \oplus
+    D_5 \oplus
+    D_7 \oplus
+    D_9 \oplus
+    D_{11} \oplus
+    \dots
+    $ 
+    \medskip
+
+    $
+    C_2 = 
+    P_2 \oplus
+    D_3 \oplus
+    D_6 \oplus
+    D_7 \oplus
+    D_{10} \oplus
+    D_{11} \oplus
+    \dots
+    $
+    \medskip
+
+    $
+    C_4 = 
+    P_4 \oplus
+    D_5 \oplus
+    D_6 \oplus
+    D_7 \oplus
+    D_{12} \oplus
+    \dots
+    $
+    \medskip
+
+    No hay error $\iff \forall C,~ C=0$
+  \end{minipage}
+\end{longtblr}
+
+
+ 
+\end{document}
+
+
