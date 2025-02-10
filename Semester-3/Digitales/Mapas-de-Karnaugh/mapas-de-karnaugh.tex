@@ -1,0 +1,237 @@
+%! TeX program = lualatex
+%tags! mapas de karnaugh mapas
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{circuitikz}
+\usepackage[no-math]{fontspec}
+\usepackage[fg,bg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage[italic]{mathastext}
+
+\def \T{Sistemas Digitales}
+\def \S{Mapas de Karnaugh}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,line width=0pt] 
+    (title) at (0,0) {\huge\bfseries\noindent\T\\\Large\bfseries\S}
+    ;
+\end{tikzpicture}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] >{\begin{minipage}{\linewidth}}X<{\end{minipage}}@{}},
+    rowsep={7pt}
+  }
+  Dos variables
+  &
+  Para una función $f(A,B)$, su mapa de Karnaugh es
+  \medskip
+
+  \begin{center}
+    \begin{tikzpicture}
+      % \node[anchor=south east] at (0,0) {$A \textbackslash B$};
+      \draw (-0.1,0.1) -- (-0.4,0.4);
+      \node[inner sep=0pt,anchor=center] at (-0.4,0.1) {\small{$A$}};
+      \node[inner sep=0pt,anchor=center] at (-0.1,0.4) {\small{$B$}};
+      \draw[step=1cm,thick] (0,0) grid (2,-2);
+      \node[anchor=south] at (0.5,0) {$0$};
+      \node[anchor=south] at (1.5,0) {$1$};
+      \node[anchor=east] at (0,-0.5) {$0$};
+      \node[anchor=east] at (0,-1.5) {$1$};
+    \end{tikzpicture}
+  \end{center}
+  
+  donde cada espacio tiene un 1 si $f$ se evalúa a 1 con los valores de $A$ y $B$ que representa.
+  \\
+  &
+  Sea $y = \bar{B}A + BA$.
+
+  \begin{center}
+    \begin{tikzpicture}
+      % \node[anchor=south east] at (0,0) {$A \textbackslash B$};
+      \draw (-0.1,0.1) -- (-0.4,0.4);
+      \node[inner sep=0pt,anchor=center] at (-0.4,0.1) {\small{$A$}};
+      \node[inner sep=0pt,anchor=center] at (-0.1,0.4) {\small{$B$}};
+      \draw[step=1cm,thick] (0,0) grid (2,-2);
+      \node[anchor=south] at (0.5,0) {$0$};
+      \node[anchor=south] at (1.5,0) {$1$};
+      \node[anchor=east] at (0,-0.5) {$0$};
+      \node[anchor=east] at (0,-1.5) {$1$};
+
+      \node at (0.5,-0.5) {};
+      \node at (1.5,-0.5) {};
+      \node at (0.5,-1.5) {1};
+      \node at (1.5,-1.5) {1};
+
+      \fill[blue,opacity=0.5] (-0.3,-1.2) rectangle (2.3,-1.8);
+
+      \node[anchor=west] at (2.5,-1.5) {$y = 1 \iff A = 1$ $\therefore$ $y = A$.};
+    \end{tikzpicture}
+  \end{center}
+  \\
+  &
+  Sea $y = \bar{B}\bar{A} + B\bar{A} + BA$.
+
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (-0.1,0.1) -- (-0.4,0.4);
+      \node[inner sep=0pt,anchor=center] at (-0.4,0.1) {\small{$A$}};
+      \node[inner sep=0pt,anchor=center] at (-0.1,0.4) {\small{$B$}};
+      \draw[step=1cm,thick] (0,0) grid (2,-2);
+      \node[anchor=south] at (0.5,0) {$0$};
+      \node[anchor=south] at (1.5,0) {$1$};
+      \node[anchor=east] at (0,-0.5) {$0$};
+      \node[anchor=east] at (0,-1.5) {$1$};
+
+      \node at (0.5,-0.5) {1};
+      \node at (1.5,-0.5) {1};
+      \node at (0.5,-1.5) {};
+      \node at (1.5,-1.5) {1};
+
+      \fill[blue,opacity=0.5] (-0.3,-0.2) rectangle (2.3,-0.8);
+      \fill[green,opacity=0.5] (1.2,0.3) rectangle (1.8,-2.3);
+
+      \node[anchor=west] at (2.5,-0.5) {\color{blue}{$y = 1$ cuando $\bar{A} = 0$}};
+      \node[anchor=west] at (1.4,-2.6) {\color{green}{$y = 1$ cuando $B = 1$}};
+    \end{tikzpicture}
+    \vspace{-15pt}
+
+    $$\therefore y = \textcolor{blue}{\bar{A}} + \textcolor{green}{B}$$
+  \end{center}
+  \\
+  Tres variables
+  &
+  Es importante tomar en cuenta que el mapa de tres variables se comporta como un anillo; las columnas en ambos extremos horizontales se pueden asociar, en este caso como $\bar{b}$.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (-0.1,0.1) -- (-0.4,0.4);
+      \node[inner sep=0pt,anchor=center] at (-0.4,0.1) {\small{$A$}};
+      \node[inner sep=0pt,anchor=center] at (-0.1,0.4) {\small{$CB$}};
+      \draw[step=1cm,thick] (0,0) grid (4,-2);
+      \node[anchor=south] at (0.5,0) {$00$};
+      \node[anchor=south] at (1.5,0) {$01$};
+      \node[anchor=south] at (2.5,0) {$11$};
+      \node[anchor=south] at (3.5,0) {$10$};
+      \node[anchor=east] at (0,-0.5) {$0$};
+      \node[anchor=east] at (0,-1.5) {$1$};
+
+      \node at (0.5,-0.5) { };
+      \node at (1.5,-0.5) { };
+      \node at (2.5,-0.5) { };
+      \node at (3.5,-0.5) { };
+      \node at (0.5,-1.5) { };
+      \node at (1.5,-1.5) { };
+
+      % \fill[blue,opacity=0.5] (-0.3,-0.2) rectangle (2.3,-0.8);
+      % \fill[green,opacity=0.5] (1.2,0.3) rectangle (1.8,-2.3);
+      %
+      % \node[anchor=west] at (2.5,-0.5) {\color{blue}{$y = 1$ cuando $\bar{A} = 0$}};
+      % \node[anchor=west] at (1.4,-2.6) {\color{green}{$y = 1$ cuando $B = 1$}};
+    \end{tikzpicture}
+    \vspace{-15pt}
+
+    % $$\therefore y = \textcolor{blue}{\bar{A}} + \textcolor{green}{B}$$
+  \end{center}
+  \\
+  &
+  Sea $f(C,B,A) = \bar{C} \bar{B} \bar{A} + \bar{C} B \bar{A} + \bar{C} B A + C \bar{B} \bar{A} + C \bar{B} A + C B A$.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (-0.1,0.1) -- (-0.4,0.4);
+      \node[inner sep=0pt,anchor=center] at (-0.4,0.1) {\small{$A$}};
+      \node[inner sep=0pt,anchor=center] at (-0.1,0.4) {\small{$CB$}};
+      \draw[step=1cm,thick] (0,0) grid (4,-2);
+      \node[anchor=south] at (0.5,0) {$00$};
+      \node[anchor=south] at (1.5,0) {$01$};
+      \node[anchor=south] at (2.5,0) {$11$};
+      \node[anchor=south] at (3.5,0) {$10$};
+      \node[anchor=east] at (0,-0.5) {$0$};
+      \node[anchor=east] at (0,-1.5) {$1$};
+
+      \node at (0.5,-0.5) {1};
+      \node at (1.5,-0.5) {1};
+      \node at (2.5,-0.5) { };
+      \node at (3.5,-0.5) {1};
+      \node at (0.5,-1.5) { };
+      \node at (1.5,-1.5) {1};
+      \node at (2.5,-1.5) {1};
+      \node at (3.5,-1.5) {1};
+
+      \fill[purple,opacity=0.5] (-0.3,-0.2) rectangle (2.3,-0.8);
+      \fill[blue,opacity=0.5] (0.7,-1.2) rectangle (3.3,-1.8);
+      \fill[green,opacity=0.5] (3.2,0.3) rectangle (3.8,-2.3);
+      %
+      % \node[anchor=west] at (2.5,-0.5) {\color{blue}{$y = 1$ cuando $\bar{A} = 0$}};
+      % \node[anchor=west] at (1.4,-2.6) {\color{green}{$y = 1$ cuando $B = 1$}};
+    \end{tikzpicture}
+    \vspace{-15pt}
+
+    $$
+    \therefore y = 
+    \textcolor{purple}{\bar{C}\bar{A}} +
+    \textcolor{blue}{BA} + 
+    \textcolor{green}{C \bar{B}}
+    $$
+  \end{center}
+
+
+\end{longtblr}
+
+
+
+\end{document}
+
+
