@@ -60,7 +60,7 @@ BoldItalicFont = NotoSans-BoldItalic,
 \usepackage{mathastext}
 
 \def \T{Introducción a las Telecomunicaciones}
-\def \S{2025-01-14}
+\def \S{Espectro Radio-eléctrico}
 
 \begin{document}
 \begin{tikzpicture}[inner sep=2pt,color=font]
@@ -105,74 +105,19 @@ BoldItalicFont = NotoSans-BoldItalic,
 
 \section*{Tipos de comunicación}
 
-\begin{tabular}{ll}
-  Simplex & A $\to$ B \\
-  Semiduplex o Half duplex & A $\to$ B \& B $\to$ A \textbf{pero no simultáneo} (en el mismo canal) \\
-  Duplex completo o Full dulex & A $\leftrightarrow$ B \textbf{simultáneo}
-\end{tabular}
-
-\section*{Medios de comunicación}
+\vspace{-2.5cm}
 
 \begin{longtblr}{
     colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
-    rowsep={7pt}
+    rowsep={13pt}
   }
-
-  Alámbricos 
-  & \begin{minipage}{\linewidth}
-    \begin{itemize}
-      \item Par de alambres de cobre 
-      \item Coaxial 
-      \item fo
-    \end{itemize}
-  \end{minipage}
-  \\
-  Inalámbricos 
-  & \begin{minipage}{\linewidth}
-    \begin{itemize}
-      \item Radio 
-      \item MO (microondas) 
-      \item Satélite
-    \end{itemize}
-  \end{minipage}
-\end{longtblr}
-
-\section*{Espectro Radioeléctrico}
-
-\begin{itemize}
-  \item Subconjunto de bandas de frequencias del espectro electromagnético que se utilizan en telecomunicaciones 
-  \item Atribución: Uso general que se le da a las frecuencias  (igual en cada país). Viene del UIT y luego reguladores como IFT
-  \item Asignación: Uso específo que se le da a las frequencias; quién las opera (distinto en cada país)
-\end{itemize}
-
-\subsection*{Propagación}
-\begin{enumerate}
-  \item Onda de tierra
-  \item Onda de directa
-    \begin{enumerate}
-      \item Línea de vista: Óptica / eléctrica
-    \end{enumerate}
-\end{enumerate}
-
-\subsection*{Distribución}
-{\Large TODO: UIT, IFT}
-
-\begin{longtblr}{
-    colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
-    rowsep={7pt}
-  }
-  VLF
-  & \begin{minipage}{\linewidth}
-    Freq: ?
-		
-	\end{minipage}
   \\
   LF
   & \begin{minipage}{\linewidth}
     Freq: 30-300kHz
     \medskip
 
-    AM Radio
+    Radio AM
     \medskip
 
     Banda kilometro
@@ -187,7 +132,10 @@ BoldItalicFont = NotoSans-BoldItalic,
     Freq: 300kHz-3MHz
     \medskip
     
-    *"
+    Radio AM
+    \medskip
+
+    Se pueden propagar reflejándose por la tierra o por la ionosfera
 	\end{minipage}
   \\
   HF
@@ -210,7 +158,7 @@ BoldItalicFont = NotoSans-BoldItalic,
     Propagación por línea de vista
     \medskip
 
-    Usos: WIFI, radio FM, audio digital, televisión (analógical)
+    Usos: WIFI, radio FM, audio digital, televisión (analógica)
 	\end{minipage}
   \\
   UHF
@@ -232,7 +180,7 @@ BoldItalicFont = NotoSans-BoldItalic,
     La longitud de onda permita que se transmitan de manera muy dirigida, por lo cual se usan para comunicación de punto a punto y radar.
     \medskip
 
-    Usos: LAN (WIFI?), satélite
+    Usos: LAN WIFI, satélite
         
 	\end{minipage}
   \\
@@ -246,19 +194,6 @@ BoldItalicFont = NotoSans-BoldItalic,
     \medskip
     Usos: Radar de control de trio, scanners de seguridad en airopuertos, redes inalámbricas de rango corto
 	\end{minipage}
-  \\
-  \\
-  Wifi
-  & {
-    2.4, 5, 6 GHz
-  }
-  \\
-  Tamaño de antena
-  & {$\lambda = \frac{C}{f}, \text{tamaño de antena }=\frac{\lambda}{2}$}
+
 \end{longtblr}
-
-
-\vspace{16pt}
-
-
 \end{document}
