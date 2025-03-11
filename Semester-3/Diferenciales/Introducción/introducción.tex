@@ -1,0 +1,175 @@
+%! TeX program = lualatex
+%tags! into lineal ode edo
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage[bg,fg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[2][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Programación de Modelos en\\Ecuaciones Diferenciales}
+\def \S{2025-01-13}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,text width=\linewidth] 
+    (title) at (0,0.9) {\Huge\bfseries\T};
+  \node[anchor=west,align=left] 
+    (subtitle) at (0,-0.5) {\Large\bfseries\S};
+\end{tikzpicture}
+\vspace{16pt}
+
+\begin{defbox}{Ecuación diferencial (ED)}
+  Una ecuación que contiene las derivadas de una o más funciones desconicidas (o variables dependientes)
+  \begin{center}
+    \[
+      \frac{dy}{dx} = 2x 
+      \to
+      \int dy ~dx = \int 2xdx
+    \]
+    \[
+      \text{Conjunto de solución general: } y = 2x^{2} + C
+    \]
+  \end{center}
+\end{defbox}
+
+\begin{longtblr}{
+    colspec={@{}Q[h,4cm,cmd=\textbf] X[h]@{}},
+    rowsep={7pt},
+  }
+
+  Ecuación diferencial ordinaria 
+  & Ecuación diferencial que contiene derivadas totales / ordinarias
+  \\
+  Ecuación diferencial parcial
+  & Ecuación diferencial que contiene derivadas parciales
+  \\
+  Variables dependientes
+  & {
+    Dada la ecuación diferencial $(x^2 + y^2) ~dx + xy ~dy=0$, si se divide toda entre $dx$, resulta $(x^2 + y^2) + xy \frac{dy}{dx} = 0$, y la variable dependiente es $y$. Si, en cambio, se divide entre $dy$, resulta $(x^2 + y^2) \frac{dx}{dy} + xy = 0$, y la variable dependiente es $x$.
+  }
+  \\
+  Orden
+  & {
+    El orden de una ecuación diferencial es el orden de su derivada mayor. 
+    Forma general de una ecuación diferencial ordinaria de orden $n$: $f(x,y,y',\dots,y^{\left(n\right)}) = 0$, donde $y^{\left(n\right)} = \frac{d^n y}{dx^n}$.
+  }
+  \\
+  Grado
+  & \begin{minipage}{\linewidth}
+    El grado algebráico de la derivada mayor.
+
+    \begin{center}
+      \begin{tblr}{%
+          colspec={l l}
+        }
+        $y'' + y' + y = \sin(x)$ & orden 2, grado 1 \\
+        $3y'' + y'^2 = 0$ & orden 2, grado 1 \\
+        $y''^2 + 2 y' = 0$ & orden 2, grado 2 \\
+      \end{tblr}
+    \end{center}
+
+  \end{minipage}
+  \\
+  EDO Lineal
+  & {
+    $
+    a_n(x) \frac{d^n y}{dx^n} + 
+    a_{n-1}(x) \frac{d^{n-1} y}{dx^{n-1}} + 
+    \dots + 
+    a_1(x) \frac{d y}{dx} + 
+    a_0(x) \frac{d y}{dx}
+    = g(x)
+    $
+
+    *El exponente de cada derivada es $1$ y el lado derecho es únicamente función de $x$.
+  }
+  \\
+  Solución general de la EDO
+  & \begin{minipage}{\linewidth}
+    Dado $f(x,y' , \dots,y^{\left(n\right)}) = 0$, $y = y(x, C_1, C_2,\dots,C_n)$.
+    \medskip
+    
+    \begin{tblr}{colspec={@{}X[m] X[m]}}
+      Cada vez que se integra, se disminuye el grado de la ecuación por $1$, y se obtiene una nueva constante de integración. 
+    & \begin{minipage}{\linewidth}
+      $$\begin{aligned}
+        \frac{ d^2y }{ dx^2 } &= 3x \\
+        \frac{dy}{dx} &= \frac{3}{2} x^2 + C_1 \\
+        y &= \frac{3}{6} x^3 + C_1 x + C_2 \\
+      \end{aligned}$$
+    \end{minipage}
+    \end{tblr}
+
+    Para obtener una solución particular para una EDO de orden $n$, una solución con todas las constantes remplazadas por escalares, de acuerdo a los requisitos de un problema real, se requieren de $n$ condiciónes iniciales; el valor de las primeras $n$ derivadas de $y$ para algún punto $x_0$.
+
+    \begin{tblr}{colspec={c X[m]}}
+      Se obtiene un sistema lineal de $n$ ecuaciones:
+      & \begin{minipage}{\linewidth}
+        $$
+          \begin{cases}
+            y'(x_0)  = y_0' \\
+            y''(x_0) = y_0'' \\
+            \dots  \\
+            y^{\left(n\right)}(x_0)  = y_0^{\left(n\right)} \\
+          \end{cases}
+        $$
+      \end{minipage}
+    \end{tblr}
+  \end{minipage}
+
+\end{longtblr}
+
+\end{document}

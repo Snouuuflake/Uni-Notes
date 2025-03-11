@@ -1,0 +1,132 @@
+%! TeX program = lualatex
+%tags! variables separables vairables
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage[bg,fg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[2][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage[italic]{mathastext}
+
+\def \T{Programación de Modelos en\\Ecuaciones Diferenciales}
+\def \S{Ecuaciones Lineales}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,text width=\linewidth] 
+    (title) at (0,0.9) {\Huge\bfseries\T};
+  \node[anchor=west,align=left] 
+    (subtitle) at (0,-0.5) {\Large\bfseries\S};
+\end{tikzpicture}
+\vspace{16pt}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[h,4cm,cmd=\textbf] X[t]@{}},
+    rowsep={7pt},
+  }
+  Ecuación diferencial de primer orden 
+  & \begin{minipage}{\linewidth}
+    \[
+      a_1(x) \frac{dy}{dx} + a_0(x) y = g(x)
+    \]
+
+    Forma estándar:
+
+      \begin{align*}
+        \frac{1}{a_1(x)}\left(a_1(x) \frac{dy}{dx} + a_0(x) y\right) &= \frac{1}{a_1(x)}{g(x)}\\
+        \frac{dy}{dx} + P(x) y &= R(x)
+      \end{align*}
+  \end{minipage}
+  \\
+  Factor Integrante
+  & \begin{minipage}{\linewidth}
+    Imagina una función $u(x)$ tal que $\frac{d}{dx} \left(u(x) y\right) = u(x) R(x)$.
+    \medskip
+
+    Multiplicando la forma estándar por $u(x)$, se obtiene: 
+
+    \[
+     \colorbox{blue!50!background}{$\displaystyle u(x) \frac{dy}{dx} + u(x) P(x) y$} = u(x) R(x)
+    \]
+
+    Expandiendo la derivada de $u(x) y$, se obtiene:
+    \[
+      \frac{d}{dx} \left(u(x) y\right) = 
+      u(x) \frac{dy}{dx} + \frac{du}{dx} y = \colorbox{blue!50!background}{$\displaystyle u(x) \frac{dy}{dx} + u(x) P(x) y$}
+    \]
+
+    $\therefore$ $\frac{du}{dx} y = u(x) P(x) y$ \& $\frac{du}{dx} = u(x) P(x)$.
+    \bigskip
+
+    \begin{align*}
+      \Rightarrow \frac{1}{u} ~du &= P(x) ~dx \\
+      \int \frac{1}{u} ~du &= \int P(x) ~dx \\
+      \ln(u) &=  \int P(x) ~dx + C \\
+      u &= e^{\int P(x) ~dx + C} \\
+      u &= e^{\int P(x) ~dx} e^{C} \\
+      u &= e^{\int P(x) ~dx} C \\
+      C = 1 \to u &= e^{\int P(x) ~dx}\\
+      \\
+      \therefore \frac{d}{dx} \left[e^{\int P(x) ~dx} y\right] &= e^{P(x) ~dx} R(x)
+    \end{align*}
+
+  \end{minipage}
+
+
+\end{longtblr}
+
+\end{document}
+
+

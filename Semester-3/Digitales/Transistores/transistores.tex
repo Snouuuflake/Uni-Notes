@@ -1,0 +1,88 @@
+%! TeX program = lualatex
+%tags! transistor trans diode dio
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage[fg,bg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Sistemas Digitales}
+\def \S{Componentes Básicos}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,line width=0pt] 
+    (title) at (0,0) {\huge\bfseries\noindent\T\\\Large\bfseries\S}
+    ;
+\end{tikzpicture}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
+    rowsep={7pt}
+  }
+  Diodo
+  & {
+    Permite que la corriente fluya en una sola dirección
+    \medskip
+
+  }
+\end{longtblr}
+
+
+ 
+\end{document}
+

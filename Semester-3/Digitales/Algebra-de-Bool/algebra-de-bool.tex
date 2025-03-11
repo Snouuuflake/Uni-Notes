@@ -1,0 +1,255 @@
+%! TeX program = lualatex
+%tags! boolean algebra and or
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{circuitikz}
+\usepackage[no-math]{fontspec}
+\usepackage[fg,bg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Sistemas Digitales}
+\def \S{Álgebra de Bool}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,line width=0pt] 
+    (title) at (0,0) {\huge\bfseries\noindent\T\\\Large\bfseries\S}
+    ;
+\end{tikzpicture}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
+    rowsep={7pt}
+  }
+  AND
+  & \begin{minipage}{\linewidth}
+    \begin{tblr}{colspec={ X[c] X[c] X[c] }}
+    {
+      {\textbf{Notación}}
+      \medskip
+
+      $A \cdot B$
+      \bigskip
+    }
+
+    & {
+      {\textbf{Tabla de verdad}}
+      \medskip
+
+      \begin{tblr}{colspec={c c |[1pt] c}, hline{2}={1pt}}
+        B & A & $A \cdot B$ \\
+        0 & 0 & 0 \\
+        0 & 1 & 0 \\
+        1 & 0 & 0 \\
+        1 & 1 & 1
+      \end{tblr}
+    } 
+
+  & {
+    \begin{circuitikz}[baseline=1cm,thick]
+      \draw (0,0) node[and port] {};
+    \end{circuitikz}
+  }
+  \end{tblr}
+  \end{minipage}
+  \\
+  OR
+  & \begin{minipage}{\linewidth}
+    \begin{tblr}{colspec={ X[c] X[c] X[c] }}
+      {
+        {\textbf{Notación}}
+        \medskip
+
+        $A + B$
+        \bigskip
+      }
+
+      & {
+        {\textbf{Tabla de verdad}}
+        \medskip
+
+        \begin{tblr}{colspec={c c |[1pt] c}, hline{2}={1pt}}
+          B & A & $A + B$ \\
+          0 & 0 & 0 \\
+          0 & 1 & 1 \\
+          1 & 0 & 1 \\
+          1 & 1 & 1
+        \end{tblr}
+      }
+
+  & {
+    \begin{circuitikz}[american,baseline=1cm,thick]
+      \draw (0,0) node[or port] {};
+    \end{circuitikz}
+  }
+
+    \end{tblr}
+  \end{minipage}
+  \\
+  NOT
+  & \begin{minipage}{\linewidth}
+    \begin{tblr}{colspec={ X[c] X[c] X[c] }}
+      {
+        {\textbf{Notación}}
+        \medskip
+
+        $\bar{A}$
+        \bigskip
+      }
+
+    & {
+      {\textbf{Tabla de verdad}}
+      \medskip
+
+      \begin{tblr}{colspec={c |[1pt] c}, hline{2}={1pt}}
+        A & $\bar{A}$ \\
+        0 & 1 \\
+        1 & 0 \\
+      \end{tblr}
+    }
+
+    & {
+      \begin{circuitikz}[american,baseline=1cm,thick]
+        \draw (0,0) node[not port] {};
+      \end{circuitikz}
+    }
+  \end{tblr}
+  \end{minipage}
+  \\
+  NAND
+  & \begin{minipage}{\linewidth}
+    \begin{tblr}{colspec={ X[c] X[c] X[c] }}
+      {
+        {\textbf{Notación}}
+        \medskip
+
+        $A \odot B$
+        \bigskip
+      }
+
+    & {
+      {\textbf{Tabla de verdad}}
+      \medskip
+
+      \begin{tblr}{colspec={c c |[1pt] c}, hline{2}={1pt}}
+        A & B & $A \odot B$ \\
+        0 & 0 & 1 \\
+        1 & 0 & 1 \\
+        0 & 1 & 1 \\
+        1 & 1 & 0 \\
+      \end{tblr}
+    }
+
+    & {
+      \begin{circuitikz}[american,baseline=1cm,thick]
+        \draw (0,0) node[xnor port] {};
+      \end{circuitikz}
+    }
+  \end{tblr}
+  \end{minipage}
+  \\
+  XOR
+  & \begin{minipage}{\linewidth}
+    \begin{tblr}{colspec={ X[c] X[c] X[c] }}
+      {
+        {\textbf{Notación}}
+        \medskip
+
+        $A \oplus B$
+        \bigskip
+      }
+
+    & {
+      {\textbf{Tabla de verdad}}
+      \medskip
+
+      \begin{tblr}{colspec={c c |[1pt] c}, hline{2}={1pt}}
+        A & B & $A \oplus B$ \\
+        0 & 0 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 1 \\
+        1 & 1 & 0 \\
+      \end{tblr}
+    }
+
+    & {
+      \begin{circuitikz}[american,baseline=1cm,thick]
+        \draw (0,0) node[xor port] {};
+      \end{circuitikz}
+    }
+  \end{tblr}
+  \end{minipage}
+  \\
+  Propiedades
+  & \begin{minipage}{\linewidth}
+    \begin{enumerate}
+      \item Elemento identidad: $a(1) = a \land a + 0 = a$ 
+      \item Ley conmutativa: $a + b = b + a \land ab = ba$ 
+      \item Ley distributiva: $a(b + c) = ab + ac \land a + bc = (a + b) (a + c)$ 
+      \item Negación o complemento: $a + \bar{a} = 1 \land a \bar{a} = 0$ 
+      \item Anulación: $a + 1 = 1 \land a \cdot 0 = 0$ 
+      \item Itempotencia: $\bar{\bar{a}} = a$
+    \end{enumerate}
+  \end{minipage}
+  Missing
+  & 
+\end{longtblr}
+
+
+ 
+\end{document}
+

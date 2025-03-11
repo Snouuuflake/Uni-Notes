@@ -1,0 +1,131 @@
+%! TeX program = lualatex
+%tags! datamodels modelos normalización normalization
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage[bg,fg]{gruvboxpalette}
+\usepackage{graphicx}
+\graphicspath{{.}}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[2][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Bases de datos}
+\def \S{SQL!}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=0pt,color=font]
+  \node[anchor=west,align=left,text width=\linewidth-2pt] 
+    (title) at (0,0.9) {\Huge\bfseries\T};
+  \node[anchor=west,align=left] 
+    (subtitle) at (0,-0.2) {\Large\bfseries\S};
+\end{tikzpicture}
+\vspace{16pt}
+
+
+\vspace{-1cm}
+\begin{longtblr}{
+    colspec={@{}Q[h,4cm,cmd=\textbf] X[t]@{}},
+    rowsep={10pt},
+  }
+  & {\Large\textbf{Comandos}}
+  \\
+  DDL (Data definition language)
+  & \begin{minipage}{\linewidth}
+    \begin{itemize}
+      \item CREATE TABLE <nombre> (<nombre\_col> <tipo> <restricciones de columna>,...,<restricciones de tabla>)
+        \medskip
+
+        Restricciones de columna:
+        \begin{itemize}
+          \item NOT NULL 
+          \item UNIQUE 
+          \item PRIMARY KEY 
+          \item CHECK (<condition>) 
+          \item DEFAULT (<value>)
+        \end{itemize}
+
+        Restricciones de tabla
+        \begin{itemize}
+          \item PRIMARY KEY (...<columnas>)
+          \item FOREIGN KEY (<columna>) REFERENCES <tabla> (<columna>) <ON (DELETE | UPDATE) (CASCADE | RESTRICT | SET NULL)>*
+          \item UNIQUE (table-wide)
+          \item CHECK (table-wide) 
+          \item DEFAULT
+        \end{itemize}
+
+      \item DROP TABLE 
+      \item ALTER TABLE 
+      \item TRUNCATE TABLE
+    \end{itemize}
+  \end{minipage}
+  \\
+  DML (Data manipulation language)
+  &
+  \\
+  DQL (Data query language)
+  &
+  \\
+  DCL (Data control language)
+  
+\end{longtblr}
+
+
+
+
+
+\end{document}
+
+
+

@@ -1,0 +1,363 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{newtxsf}
+
+\graphicspath{ {../images/} }
+\definecolor{mBlue}{rgb}{0,0.5,1}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.95}
+\definecolor{lBlue}{rgb}{0.7,0.8,1.0}
+%TODO Title
+\def\T{Chapter 2}
+%TODO Day
+\def\D{8}
+%TODO Month
+\def\M{1}
+%TODO Year
+\def\Y{2024}
+\addtolength\parskip{\smallskipamount}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-4in}
+\setlength{\topmargin}{0pt}
+\title{\vspace{-3.0cm}\T}
+\date{\vspace{-1cm}\D \ / \M  \ / \Y}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+\maketitle
+
+\section*{The Peano Axioms (God help us)}
+\textbf{The natural numbers are the elements of the set $N := \{0,1,2,3,4,\dots\}$}
+
+\subsection*{The Axioms}
+\begin{enumerate}
+	\item 0 is a natural number
+	\item if $n$ is a natural number, then $n++$ is also a natural number
+	\item $\forall n \in N, n++ \neq 0$
+	\item $\forall n,m \in N, n++ = m++ \to n=m$
+	\item \emph{Induction:} $P(n)$ is a property of a natural number $n$, $P(0) \land P(n++) \to P(n) \text{ is true for all } n \in N$
+\end{enumerate}
+
+\subsection*{Induction}
+At least while we only look at the natural numbers, proving $P(0)$, assuming $P(n) \forall n\in N$ and proving $P(n++)$ proves $P(n)$.
+
+From what I get, we can do this because once $P(0) \land P(n++)$, $P(0 ++ \text{indefinite times})$ becomes true.
+
+\section*{Recursive definitions}
+Recursive definitions generate a sequence based on a function. An initial value, $a_0$ is defined, and the rest of the sequence is defined as $a_{n++} := f(a_{n})$. Each element of the sequence will now have a unique value, which in turn produces a unique value, the output of $f$ for the next element of the sequence.
+
+\section*{Addition}
+- Only for $N \to N$, obviously.
+
+$$m \in N$$
+$$0 + m := m$$
+
+Assume inductively that $n+m, n \in N$ is defined. 
+
+\begin{center}
+	We now define $(n++) + m := (n+m)++$
+	
+	We can now recursively "count".
+\end{center}
+
+Note that $3+5$ involves counting 5 times, while $5+3$ involves counting 3 times.
+
+\subsection*{Lemma 2.2.2 $\forall n \in \mathbb{N} n+0=n$}
+We cannot just prove this from the definition of addition, as its in reverse.
+
+\subsubsection*{Proof:}
+We use induction.
+
+Base case: $0+0=0$, we \textit{can} get this one by definition.
+
+We now suppose inductively that $n+0=n$.
+
+By definition. $n++~+0=(n+0)++$, which $=n++$ since we have assumed inductively that $(n+0)=n$.
+
+This concludes the proof.
+
+
+\subsection*{Lemma 2.2.3 $\forall n,m \in \mathbb{N}, n+(m++)=(n+m)++$}
+\subsubsection*{Proof:}
+We keep $m$ fixed. 
+
+Consider $n=0$, $\to 0+(m++)=(0+m)++$. We know this is true by definition.
+
+We assume what we are trying to prove is true.
+Now we must show that $(n++)+(m++)=((n++)+m)++$.
+
+By definition of addition we have that the left side is $(n+(m++))++$.
+By the inductive hypothesis we have assumed that this $=((n+m)++)~~++$.
+
+The right side then becomes $(n+m)++~++$, which $=((n+m)++)++$.
+This concludes the induction.
+
+\subsection*{Proposition 2.2.4 $\forall n, m \in \mathbb{N}, n+m = m+n$ (Conmutativity) }
+\subsubsection*{Proof:}
+We keep $m$ fixed. This lets us prove the base case ($0+m = m+0$) by definition. We now suppose that $n+m = m+n$ and have to prove $(n++) + m = m + (n++)$. 
+\hspace{0.5cm}
+
+\begin{tabular}{l p{13cm}}
+	Left side  & 
+	By definition of addition we get $(n++) + m = \colorbox{lightgray}{(n + m)++}$. 
+	\\
+	Right side & 
+	By Lemna 2.2.3, we get $m + (n++) = (m + n)++$, but by our previous assumption, $n + m = m + n$ and $\therefore ((m + n)++ = \colorbox{lightgray}{(n + m)++} $
+\end{tabular}
+
+\subsection*{Proposition 2.2.5 $\forall a,b,c \in \mathbb{N}, (a + b) + c = a + (b + c)$ (Asociativity)}
+\subsubsection*{Proof: Exercise 2.2.1}
+\paragraph{Hint:}
+Modify proofs of 2.2.2, 2.2.3 \& 2.2.4
+
+something something inductive assumption $\to$ both sides $= (a + b + c) ++$
+
+Let us induct on $a$.
+\vspace{\parskip}
+
+\paragraph{Base case: $a = 0$}~
+
+\begin{center}
+	\begin{tabular}{l l}
+		$a = 0 \to$                & $(0 + b) + c = 0 + (b + c)$                     \\
+		By definition of addition: & $\colorbox{lightgray}{b + c} = b + c ~~\square$ \\
+	\end{tabular}
+\end{center}
+
+\paragraph{Induction:} Assume $(a + b) + c = a + (b + c)$
+
+\begin{center}
+	\begin{tabular}{l l}
+		Prove:                             & $(a++~ + b) + c = a++~ + (b + c)$         \\
+		By definition of addition:         & $(a + b)++~ + c = a++~ + (b + c)$         \\
+		Same thing:                        & $(a + b)++~ + c = (a + (b + c))++$        \\
+		One more time:                     & $((a + b) + c)++ = (a + (b + c))++$       \\
+		We have already assumed asociativity. & $(a + b + c)++ = (a + b + c)++ ~~\square$
+	\end{tabular}
+\end{center}
+
+
+\subsection*{Proposition 2.2.6 (Cancellation law)}
+$\text{Let}~ a,b,c \in \mathbb{N} \ni a+b=a+c \text{. } \Rightarrow b=c$
+
+\begin{itemize}
+	\item We don't have subtraction
+	\item But this does the job and also helps define the integers later
+\end{itemize}
+
+\subsubsection*{Proof}
+We induct on $a$.
+
+\paragraph{Base case: } $a = 0$
+\begin{center}
+	\begin{tabular}{l l}
+		$a = 0 \to$                & $0 + b = 0 + c$ \\
+		By definition of addition: & $\square$       \\
+	\end{tabular}
+\end{center}
+
+\paragraph{Induction:} Assume $a + b = a + c \to b = c$
+\begin{center}
+	\begin{tabular}{l l}
+		Prove:                     & $(a++) + b = (a++) + c$ \\
+		By definition of addition: & $(a + b)++ = (a + c)++$ \\
+		By Axiom 4:                & $(a + b) = (a + c)$     \\
+		We assume cancelation      & $b = c ~~ \square$      \\
+	\end{tabular}
+\end{center}
+
+\subsection*{Definition 2.2.7 (Positive natural numbers)}
+$n \in \mathbb{N+} \iff n \neq 0$
+
+\subsection*{Proposition 2.2.8}
+$ a \in \mathbb{N+} ~\land~ b \in \mathbb{N} \to (a + b) \in \mathbb{N+}$
+
+\subsubsection*{Proof:}
+We induct on $b$.
+
+\paragraph{Base case:} $b = 0$
+\begin{center}
+  \begin{tabular}{l l}
+    $b = 0 \to$         & $a + 0 = a$ \\
+    $a \in \mathbb{N+}$ & $\square$\\
+  \end{tabular}
+\end{center}
+
+\paragraph{Induction:} Assume $ a \in \mathbb{N+} ~\land~ b \in \mathbb{N} \to (a + b) \in \mathbb{N+}$
+\begin{center}
+  \begin{tabular}{l l}
+		Prove:              & $a + (b++) \in \mathbb{N+}$ \\
+		By Lemna 2.2.3      & $a + (b++) = (a + b)++$    \\
+		By Axiom 3:         & $(a + b)++ \neq 0 ~~\square$
+  \end{tabular}
+\end{center}
+
+\subsection*{Corollary 2.2.9}
+$ \{a,b\} \in \mathbb{N} \land a + b = 0 \to a = 0 \land b = 0$
+
+\subsubsection*{Proof}
+If $a$ or $b$ $\neq 0$ (are positive), by Proposition 2.2.8 (and conmutativity) $a + b \in \mathbb{N+}$. $\therefore$, by contradiction, $a,b = 0$. 
+
+
+\subsection*{Lemma 2.2.10}
+$a \in \mathbb{N+} \to \exists |~ b \in \mathbb{N} ~\text{s.t.}~ (b++) = a$
+
+\subsubsection*{Proof: Exercise 2.2.2}
+\paragraph{Hint:} Use indiction. (The induction hypotesis is not actually used, but that doesn't undermine the validity of the argument)
+
+\vspace{\parskip}
+We induct on $b$.
+
+\paragraph{Base case:} $b = 0$
+\begin{center}
+  \begin{tabular}{l l}
+		$b = 0 \to$        & $0++ = 1 \to a = 1$ \\ 
+		By Axiom 3:				 & $a \in \mathbb{N+} ~~\square$
+  \end{tabular}
+\end{center}
+
+\paragraph{Induction:} Assume $a \in \mathbb{N+}$
+\begin{center}
+  \begin{tabular}{l l}
+		Prove:             & $(b++)++ = a \to a \in \mathbb{N+}$ \\ 
+		By Axiom 3:        & $(b++), (b++)++ \neq 0 \to (b++)++ \in \mathbb{N+} \to a \in \mathbb{N+} ~~\square??????$
+  \end{tabular}
+\end{center}
+
+\paragraph{Definition 2.2.1: Ordering of $\mathbb{N}$}~
+
+$n \geq m \iff \exists \colorbox{lightgray}{$a$}~ s.t.~ n = m + a$
+
+$n > m \iff n \geq m \land n \neq m$
+
+\paragraph{Proposition 2.2.12: (Basic properties of the natural nubers)}
+
+{
+	\renewcommand{\theenumi}{(\alph{enumi})}
+	\begin{enumerate}
+		\item $x \geq x$
+			\begin{center}
+				\begin{tabular}{l l}
+					Def. Addition: & $x + 0 = x$ \\
+					               & $\therefore \colorbox{lightgray}{$a$} = 0 \to x \geq x$
+				\end{tabular}
+			\end{center}
+
+		\item $a \geq b \land b \geq c \to a \geq c$
+			\begin{center}
+				\begin{tabular}{l l}
+					$a = b + n_1; b = c + n_2$ \\
+					$a = c + n_1 + n_2$
+				\end{tabular}
+			\end{center}
+			
+		\item $a \geq b \land b \geq a \to a = b$
+			\begin{center}
+				\begin{tabular}{l l}
+					                        & $a = b + n_1;~ b = a + n_2$ \\
+					                        & $a = a + n_2 + n_1$ \\
+					Asso. \& Def. Addition: & $a + 0 = a + (n_2 + n_1)$ \\
+					Cancelation law:        & $(n_2 + n_1) = 0$ \\
+					Collary 2.2.9:          & $n_1, n_2 = 0$ \\
+					Def. Addition:          & $a = b + 0 \to a = b$
+				\end{tabular}
+			\end{center}
+			
+		\item $a \geq b \iff a + c \geq b + c$
+			\begin{center}
+				\begin{tabular}{l l}
+					%$a \geq b \to$         & $a = b + n_1$ \\
+					$a + c \geq b + c \to$ & $a + c = b + c + n_1$ \\
+					Cancellation law:      & $a = b + n_1 \therefore a \geq b ???$
+				\end{tabular}
+			\end{center} 
+			
+		\item $a < b \iff a++ \leq b$
+			\begin{center}
+				\begin{tabular}{l l}
+                         & $a++ \geq b \to a++~ + n_1 = b$ \\
+          Def. Addition: & $a++ = a + 1$ \\
+          							 & $n_2 = n_1 + 1 \to a + n_2 = b$ \\
+          Def $ > $ 1    & $n_2 > 0$ \\
+          							 & $a < b$
+				\end{tabular}
+			\end{center}
+			\\~\\
+
+		\item $a < b \iff b = a + d \land d \in \mathbb{N}+$
+			\begin{center}
+				\begin{tabular}{l l}
+					Proposition 2.2.12 e: & $a++ \leq b$ \\
+					Def. Addition         & $a + 1 \leq b$ \\
+					Def. $ < $            & $a + 1 + n_1 = b$ \\
+					Def. Addition         & $a + (n_1++) = b$ \\
+					Axiom 2.3             & $(n_1++) \neq 0$ \\
+					Def. Positive         & $n_1 \text{ is positive}$
+				\end{tabular}
+			\end{center}
+	\end{enumerate}
+}
+
+\paragraph{Proposition 2.2.13: Trichotomy of order for natural numbers}~
+
+$a,b \in \mathbb{N} \to (a < b \lor a = b \lor a > b)$
+\begin{enumerate}
+	\item $a = 0 \to a \leq b~ \forall b$ (why?) Induction.
+			\begin{center}
+				\begin{tabular}{l l}
+					$b = 0$ & $0 + 0 = b$ \\
+					$b ++ $ & $0 + n_1 = b++$ \\
+									& $\forall b++, n_1 = b++$~~~  or something like that
+				\end{tabular}
+			\end{center}
+
+	\item $a > b \to a++ > b$ (why?)
+			\begin{center}
+				\begin{tabular}{l l}
+					Proposition 2.2.12 f: & $a = b + n_1, n_1 \text{ is positive}$ \\
+					Axiom 2.4:            & $a++ = (b + n_1)++$ \\
+					Associativiy          & $a++ = b + (n_1++)$ \\
+					Axiom 2.3:            & $n_1++ \text{ is positive}$ \\
+					Proposition 2.2.12 f: & $a++ > b$
+				\end{tabular}
+			\end{center}
+
+	\item $a = b \to a++ > b$ (why?)
+			\begin{center}
+				\begin{tabular}{l l}
+					Def. Addition: & $a++ = b++ = a + 1$
+				\end{tabular}
+			\end{center}
+\end{enumerate}
+
+\paragraph{Proposition 2.2.14: Strong principle of induction}
+
+Let $m_0$ be some natural number and $P(m)$ be a property of an arbetrary natural number $m$. Suppose that $\forall m \geq m_0:~ P(m')~ \forall~ m_0 \leq m' < m \to P(m)$. It can then be concluded that $P(m)~ \forall~ m \geq m_0$.
+
+\paragraph{Proof:}
+Let $Q(n)$ be the property that $P(m)~ \forall~ m_0 \leq m < n$. The hypothesis can now be re-written as: $Q(n) \to P(n)$.
+
+\begin{center}
+	\begin{tabular}{l l}
+		\textbf{Base case: $n = 0$} \\
+		Im not proving this:   & $\nexists m \text{ s.t. } m_0 \leq m < 0$ \\
+		\\
+		\textbf{Assume $Q(n) \to P(n)$. Prove $Q(n++)$} \\
+		$Q(n) \land P(n) \to$  & $P(m)~ \forall~ m_0 \leq m \colorbox{pink}{$\leq$} n$ \\
+		Proposition 2.2.12 e:  & $P(m)~ \forall~ m_0 \leq m < n++$ \\
+		Def. $Q(n)$            & $Q(n++)~~ \square$
+	\end{tabular}
+\end{center}
+
+
+\end{document}

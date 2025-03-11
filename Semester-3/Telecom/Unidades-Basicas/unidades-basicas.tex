@@ -1,0 +1,135 @@
+%! TeX program = lualatex
+%tags! unidades básicas unit
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage[bg,fg]{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Introducción a las Telecomunicaciones}
+\def \S{2025-01-14}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=2pt,color=font]
+  \node[anchor=west,align=left] 
+    (title) at (0,0) {\huge\bfseries\T\\\Large\bfseries\S}
+    ;
+  \node[anchor=east]
+    {
+      \begin{tikzpicture}[inner sep=0pt,draw=font]
+        \coordinate (legLO) at ($(-2pt,0) + (250:22pt)$);
+        \coordinate (legLI) at ($(legLO) + (2pt,0)$);
+        \coordinate (legRO) at ($(2pt,0) + (-70:22pt)$);
+        \coordinate (legRI) at ($(legRO) + (-2pt,0)$);
+        \draw[fill=font]
+          (legLI) to[out=45,in=135] (legRI) -- (legRO) to[out=125,in=55] (legLO) -- cycle
+          ;
+        \draw[fill=font]
+          (-2pt,0) -- (legLO) -- (legLI) -- ++(70:18pt) -- cycle;
+        \draw[fill=font]
+          (2pt,0) --  (legRO) -- (legRI) -- ++(-250:18pt) -- cycle;
+          ;
+        \draw[fill=font] 
+          (4pt,0) arc (0:360:4pt); 
+        \draw[fill=font]
+          (-7pt,-5pt) to[out=135,in=225] ++(0,10pt) -- ++(-2pt,0) to[out=225,in=135] ++(0,-10pt) -- cycle 
+          ;
+        \draw[fill=font]
+          (-12pt,-8pt) to[out=135,in=225] ++(0,16pt) -- ++(-2pt,0) to[out=225,in=135] ++(0,-16pt) -- cycle
+          ;
+        \draw[fill=font]
+          (7pt,-5pt) to[out=45,in=-45] ++(0,10pt) -- ++(2pt,0) to[out=-45,in=45] ++(0,-10pt)
+          -- cycle
+          ;
+        \draw[fill=font]
+          (12pt,-8pt) to[out=45,in=-45] ++(0,16pt) -- ++(2pt,0) to[out=-45,in=45] ++(0,-16pt)
+          -- cycle
+          ;
+      \end{tikzpicture}
+    }
+    ;
+\end{tikzpicture}
+
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] >{\begin{minipage}{\linewidth}}X<{\end{minipage}} @{}},
+    rowsep={7pt}
+  }
+  Tres unidades básicas
+  & 
+  \[
+    dB = 10 \log_{10} \left(\frac{P}{P_r}\right) \text{Donde $P_r$ es una potencia de referencia ($1W$, $1mW$, etc.)}
+  \]
+  \[
+    dB_m: P_r = 1mW
+  \]
+
+  \begin{center}
+    Byte, KB, MB, GB, \dots
+  \end{center}
+
+  \begin{center}
+    bps, kpbs, mbps, gbps \dots
+  \end{center}
+
+\end{longtblr}
+
+
+\vspace{16pt}
+
+
+\end{document}
+

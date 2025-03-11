@@ -1,0 +1,199 @@
+%! TeX program = lualatex
+%tags! intro first class telecom
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[no-math]{fontspec}
+\usepackage{gruvboxpalette}
+\usepackage{hyperref}
+\usepackage{newtxsf}
+\usepackage[explicit]{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularray}
+\DefTblrTemplate{firsthead, middlehead,lasthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot-text}{normal}{} \SetTblrTemplate{contfoot-text}{normal} \DefTblrTemplate{conthead-text}{normal}{} \SetTblrTemplate{conthead-text}{normal}
+\UseTblrLibrary{counter}
+\hypersetup{
+  colorlinks  = true,
+  urlcolor    = Blue,
+  linkcolor   = Blue,
+  citecolor   = Blue
+}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{NotoSans-Regular}[
+Path           = /home/snouflake/.fonts/ ,
+Extension      = .ttf ,
+BoldFont       = NotoSans-Bold ,
+ItalicFont     = NotoSans-Italic ,
+BoldItalicFont = NotoSans-BoldItalic,
+] 
+
+\newtcolorbox{defbox}[3][]{%
+  colback=blue!30!background,
+  coltitle=blue!15!black,
+  coltext=font,
+  title filled=false,
+	enhanced,
+  detach title,
+  tile,
+  before upper={\tcbtitle\medskip\\},
+  borderline west={2mm}{0pt}{blue},
+  % attach boxed title to top center={yshift=-2mm},
+  leftrule=2mm,
+  toprule=0mm,
+  bottomrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+	title={Definición:~#2},
+	#1
+}
+
+\setlength\parindent{0pt}
+
+\usepackage{mathastext}
+
+\def \T{Introducción a las Telecomunicaciones}
+\def \S{Espectro Radio-eléctrico}
+
+\begin{document}
+\begin{tikzpicture}[inner sep=2pt,color=font]
+  \node[anchor=west,align=left] 
+    (title) at (0,0) {\huge\bfseries\T\\\Large\bfseries\S}
+    ;
+  \node[anchor=east]
+    {
+      \begin{tikzpicture}[inner sep=0pt,draw=font]
+        \coordinate (legLO) at ($(-2pt,0) + (250:22pt)$);
+        \coordinate (legLI) at ($(legLO) + (2pt,0)$);
+        \coordinate (legRO) at ($(2pt,0) + (-70:22pt)$);
+        \coordinate (legRI) at ($(legRO) + (-2pt,0)$);
+        \draw[fill=font]
+          (legLI) to[out=45,in=135] (legRI) -- (legRO) to[out=125,in=55] (legLO) -- cycle
+          ;
+        \draw[fill=font]
+          (-2pt,0) -- (legLO) -- (legLI) -- ++(70:18pt) -- cycle;
+        \draw[fill=font]
+          (2pt,0) --  (legRO) -- (legRI) -- ++(-250:18pt) -- cycle;
+          ;
+        \draw[fill=font] 
+          (4pt,0) arc (0:360:4pt); 
+        \draw[fill=font]
+          (-7pt,-5pt) to[out=135,in=225] ++(0,10pt) -- ++(-2pt,0) to[out=225,in=135] ++(0,-10pt) -- cycle 
+          ;
+        \draw[fill=font]
+          (-12pt,-8pt) to[out=135,in=225] ++(0,16pt) -- ++(-2pt,0) to[out=225,in=135] ++(0,-16pt) -- cycle
+          ;
+        \draw[fill=font]
+          (7pt,-5pt) to[out=45,in=-45] ++(0,10pt) -- ++(2pt,0) to[out=-45,in=45] ++(0,-10pt)
+          -- cycle
+          ;
+        \draw[fill=font]
+          (12pt,-8pt) to[out=45,in=-45] ++(0,16pt) -- ++(2pt,0) to[out=-45,in=45] ++(0,-16pt)
+          -- cycle
+          ;
+      \end{tikzpicture}
+    }
+    ;
+\end{tikzpicture}
+
+\section*{Tipos de comunicación}
+
+\vspace{-2.5cm}
+
+\begin{longtblr}{
+    colspec={@{}Q[3cm,cmd=\textbf,h] X@{}},
+    rowsep={13pt}
+  }
+  \\
+  LF
+  & \begin{minipage}{\linewidth}
+    Freq: 30-300kHz
+    \medskip
+
+    Radio AM
+    \medskip
+
+    Banda kilometro
+    \medskip
+
+    Se pueden propagar reflejándose por la tierra o por la ionosfera
+		
+	\end{minipage}
+  \\
+  MF
+  & \begin{minipage}{\linewidth}
+    Freq: 300kHz-3MHz
+    \medskip
+    
+    Radio AM
+    \medskip
+
+    Se pueden propagar reflejándose por la tierra o por la ionosfera
+	\end{minipage}
+  \\
+  HF
+  & \begin{minipage}{\linewidth}
+    Freq: 3-30MHz
+    \medskip
+    
+    Comunicación de larga distancia mediante la ionosfera
+    \medskip
+
+    Usos: militar, aviación, marítimo
+
+	\end{minipage}
+  \\
+  VHF
+  & \begin{minipage}{\linewidth}
+    Freq: 30-300MHz
+    \medskip
+
+    Propagación por línea de vista
+    \medskip
+
+    Usos: WIFI, radio FM, audio digital, televisión (analógica)
+	\end{minipage}
+  \\
+  UHF
+  & \begin{minipage}{\linewidth}
+    Freq: 300MHz-3GHz
+    \medskip
+    
+    Propagación: Línea de vista. Permite reusar bandas
+    \medskip
+
+    Usos: televisón vía terrestre; celulares, 3 \& 4G; satélite, GPS, Wifi, Bluetooth;
+	\end{minipage}
+  \\
+  SHF
+  & \begin{minipage}{\linewidth}
+    Freq: 3-30GHz (microondas)
+    \medskip
+
+    La longitud de onda permita que se transmitan de manera muy dirigida, por lo cual se usan para comunicación de punto a punto y radar.
+    \medskip
+
+    Usos: LAN WIFI, satélite
+        
+	\end{minipage}
+  \\
+  EHF
+  & \begin{minipage}{\linewidth}
+    Freq: 30-300GHz
+    \medskip
+
+    Propagación: Línea de vista, díficilmente pasan por paredes o plantas
+
+    \medskip
+    Usos: Radar de control de trio, scanners de seguridad en airopuertos, redes inalámbricas de rango corto
+	\end{minipage}
+
+\end{longtblr}
+\end{document}
