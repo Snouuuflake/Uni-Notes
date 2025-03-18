@@ -265,6 +265,11 @@ BoldItalicFont = NotoSans-BoldItalic,
 
   \begin{equation}
     u = \int \frac{e^{- \int P(x) \,dx}}{y_1^2} \,dx
+    \label{eq:reddeg2usol}
+  \end{equation}
+
+  \begin{equation}
+    \therefore y_2 = y_1 \int \frac{e^{- \int P(x) \,dx}}{y_1^2} \,dx
     \label{eq:reddeg2y2sol}
   \end{equation}
 
@@ -272,7 +277,90 @@ BoldItalicFont = NotoSans-BoldItalic,
     y(x) = c_1 y_1 + c_2 u y_1
     \label{eq:reddeg2sol}
   \end{equation}
+  \\
+  Ecuación de Cauchy-Euler
+  &
+  \begin{equation}
+    a_{n}\, x^{n}\, \frac{d^{n}y}{dx^{n}} +
+    a_{n-1}\, x^{n-1}\, \frac{d^{n-1}y}{dx^{n-1}} +
+    \dots +
+    a_{1}\, x^{1}\, \frac{d^{1}y}{dx^{1}} +
+    a_{0}\, y = g\left(x\right)
+    ,~ n \in \mathbb{R}
+    \label{eq:cauchyeulerform}
+  \end{equation}
+  
+  \linesection{Solución general}
 
+  Se propone $y = x^{m}$. Por lo tanto, cada término 
+  $a_{k}\, x^{k}\, \frac{d^{k}y}{dx^{k}}$ se convierte en
+
+  \begin{equation}
+    a_{k}\, m\, 
+    \left( m-1 \right)
+    \left( m-2 \right)
+    \dots
+    \left( m - k + 1 \right)
+    \, x^{m}
+    \label{eq:cauchyeulertermconversion}
+  \end{equation}
+  
+  Por lo tanto, $m$ debe ser raíz de una ecuación auxiliar: el polinomio formado aplicando \ref{eq:cauchyeulertermconversion}, omitiendo $x^{m}$.
+  \\
+  ~
+  &
+  \linesection{Orden 2}
+
+  \textbf{Forma general, substituyendo según ec. \ref{eq:cauchyeulertermconversion}}
+
+  \begin{equation}
+    a\, m \left( m - 1 \right) x^{m} +
+    b\, m  x^{m} +
+    c\, x^{m}
+    = 0
+    \label{eq:cauchyeulerdeg2generalform}
+  \end{equation}
+
+  \textbf{Ecuación auxiliar}
+
+  \begin{equation}
+    a\, m \left( m - 1 \right)  +
+    b\, m   +
+    c\
+    = 0
+    \label{eq:cauchyeulerdeg2aux}
+  \end{equation}
+
+  \medskip
+  \textbf{Caso I: Raíces distintas}
+  \medskip
+
+  \begin{equation}
+    y = c_1\,x^{m_1} + c_2\,x^{m_2}
+    \label{eq:cauchyeulerdeg2casei}
+  \end{equation}
+
+  \medskip
+  \textbf{Caso II: Raíces repetidas}
+  \medskip
+
+  \begin{equation}
+    y = c_1\,x^{m_1} + c_2\,x^{m_1}\,\text{ln}x
+    \label{eq:cauchyeulerdeg2caseii}
+  \end{equation}
+
+  \medskip
+  \textbf{Caso III: Raíces complejas conjugadas}
+  \medskip
+
+  \begin{equation}
+    m_1 = \alpha + i \beta,~ m_2 = \alpha - i \beta \Rightarrow
+    y = x^{\alpha} \left(
+    c_{1} \cos\left( \beta\, \text{ln}x \right) +
+    c_{2} \sin\left( \beta\, \text{ln}x \right)
+    \right)
+    \label{eq:cauchyeulerdeg2caseiii}
+  \end{equation}
 
 
 
