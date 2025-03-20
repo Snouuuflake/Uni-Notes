@@ -96,7 +96,7 @@ BoldItalicFont = NotoSans-BoldItalic,
     \\
     & \therefore a me^{mx} + b e^{mx} = 0 \therefore e^{mx} (am + b) = 0 \label{eq:1degsub}
   \end{flalign}
-  *donde $m$ es una solución a $am + b = 0$ porque, factorizando \ref{eq:1degsub}:2, $e^{mx} nunca puede ser 0$.
+  *donde $m$ es una solución a $am + b = 0$ porque, factorizando \ref{eq:1degsub}:2, $e^{mx} \text{nunca puede ser } 0$.
   \medskip
 
   Parecería que para la solución particular $y = e^{\frac{-5 x}{2}}$ , la solución general es $y = c_1 e^{\frac{-5 x}{2}}$, lo cual, derivando, tiene sentido, supongo.
@@ -228,6 +228,9 @@ BoldItalicFont = NotoSans-BoldItalic,
     c_{n} e^{m_n x} +
     \label{eq:degncase1sol}
   \end{equation}
+
+  Si una raíz $m$ se repite $k$ veces, existen soluciones: 
+  $$c_1 e^{mx} + c_2 x e^{mx} + c_3 x^2 e^{mx} + \dots + c_k x^{k-1} e^{mx}$$
 
   \\
   Reducción de órden
@@ -361,6 +364,38 @@ BoldItalicFont = NotoSans-BoldItalic,
     \right)
     \label{eq:cauchyeulerdeg2caseiii}
   \end{equation}
+  \\
+  Coeficientes indeterminados: Superposición
+  &
+  \begin{equation}
+    a_{n} y^{(n)} +
+    a_{n-1} y^{(n-1)} +
+    \dots +
+    a_{1} y' +
+    a_{0} y 
+    = g\left(x\right)
+    \label{eq:indetercoefform}
+  \end{equation}
+  Donde $g(x)$ es una combinación lineal de funciónes con la forma
+  \[
+    \text{Polinomial},~ e^{\alpha x},~  e^{\alpha x} \sin(\beta x),~ e^{\alpha x} \cos(\beta x)
+  \]
+
+  La solución con superposición tiene forma de la suma de una función complementaria $y_c$ y una solución particular $y_p$.
+  \medskip
+
+  Primeramente se obtiene $y_c$, igualando ec. \ref{eq:indetercoefform} a 0 y resolviendo.
+  \medskip
+
+  Luego, se resuelve $y_p$, la cual consiste en una suma de los términos de $g(x)$ y sus derivadas, cada uno multiplicado por una constante.
+  \medskip
+
+  Por ejemplo, si $g(x) = 4x^{2} + 6 e^{x}$, $y_p = A\,x^{2} + B\,e^{6} +C\,x + D$.
+  \medskip
+
+  Entonces, se substituye $y$, $y'$, $y''$, \dots~ por $y_p$, $y_p'$, $y_p''$ \dots~ en ec. \ref{eq:indetercoefform} y se resuelve por $A$, $B$, $C$ \dots~.
+
+  La solución final es $y = y_c + y_p$.
 
 
 
