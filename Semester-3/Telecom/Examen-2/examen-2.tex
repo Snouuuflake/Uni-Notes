@@ -1,5 +1,5 @@
 %! TeX program = lualatex
-%tags! energia fisica cinetica 
+
 \documentclass[letterpaper]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
@@ -61,13 +61,14 @@ BoldItalicFont = NotoSans-BoldItalic,
 
 \usepackage[italic]{mathastext}
 
-\def \T{Física 1}
-\def \S{Energía}
+\def \T{Telecom}
+\def \S{Examen 2 (repaso)}
 
 \begin{document}
 \begin{tikzpicture}[inner sep=0pt,color=font]
   \node[anchor=west,align=left,line width=0pt] 
-    (title) at (0,0) {\huge\bfseries\noindent\T\\\smallskip\Large\bfseries\S}
+    (title) at (0,0)
+    {\huge\bfseries\noindent\T\\\smallskip\Large\bfseries\S}
     ;
 \end{tikzpicture}
 
@@ -76,73 +77,20 @@ BoldItalicFont = NotoSans-BoldItalic,
     colspec={@{}Q[4cm,cmd=\textbf,h] >{\begin{minipage}{\linewidth}}X<{\end{minipage}}@{}},
     rowsep={7pt},
   }
-  Energía cinética
+  Teoría de la información
   &
-  \[
-    E_c = K = \frac{1}{2}\, m \left|v\right|^2 \hspace{10pt} \text{J\,[oules]}
-  \]
-  * Normalmente $\left|v\right|$, la rapidez, se escribe como $v$, pero tanto $E_c$, y $v$ en este caso, son escalares.
-
-  \\
-  Energía potencial gravitacional
-  &
-  \begin{equation}
-    E_p = m g h
-    \label{eq:ep}
-  \end{equation}
-  *donde h es distancia hacia abajo ($-y$), no arriba
-  \\
-  Energía mecánica total
-  &
-  \begin{equation}
-    E_{mt} = E_c + E_c
-    \label{eq:emt}
-  \end{equation}
-  \\
-  Principio de la conservación
-  &
-  \begin{equation}
-    E_{mt~i} = E_{mt~f}
-    \label{eq:emtemtf}
-  \end{equation}
+  Modulación permite más información
   \medskip
+  \\
+  PCM
+  &
+  Aplicaciones: 2 centrales de teléfono y backhold
 
-  La fuerza, por lo tanto, es conservativa ($\nabla \times \bar{F} = 0$), por lo cual también tiene una función de potencial.
-  \\
-  Trabajo
-  &
-  \begin{equation}
-    W = \int \bar{F} \cdot d\bar{r}
-    \label{eq:wdef}
-  \end{equation}
-   \\
-   Teorema del trabajo energía
-  &
-  \begin{equation}
-    W = \Delta K = K_f - K_i
-    \label{eq:teoremata}
-  \end{equation}
-  \\
-  Plano inclinado
-  &
-  Dado los ejes $x$, $y$ inclinados a un ángulo $\alpha$ y el peso $w$, ???
-  \\
-  Ley de Hooke
-  &
-  \begin{equation}
-    F = -kx
-    \label{eq:hooke}
-  \end{equation}
-  \\
-  Trabajo en Hooke
-  &
-  \begin{equation}
-    W = \int_{x_i}^{x_f} -kx dx
-  \end{equation}
-
-
+  Formula de ruido y eso
 \end{longtblr}
 \end{document}
+
+
 
 
 
