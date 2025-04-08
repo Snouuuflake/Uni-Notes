@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{circuitikz}
 \usepackage[no-math]{fontspec}
-\usepackage[fg]{gruvboxpalette}
+\usepackage[]{gruvboxpalette}
 \usepackage{hyperref}
 \usepackage{newtxsf}
 \usepackage[explicit]{titlesec}
@@ -29,13 +29,13 @@
 }
 \usepackage[most]{tcolorbox}
 
-\setmainfont{NotoSans-Regular}[
+\setmainfont{JetBrainsMono-Regular}[
 Path           = /home/snouflake/.fonts/ ,
 Extension      = .ttf ,
-BoldFont       = NotoSans-Bold ,
-ItalicFont     = NotoSans-Italic ,
-BoldItalicFont = NotoSans-BoldItalic,
-] 
+BoldFont       = JetBrainsMono-Bold ,
+ItalicFont     = JetBrainsMono-Italic ,
+BoldItalicFont = JetBrainsMono-BoldItalic,
+]  
 
 \newtcolorbox{defbox}[3][]{%
   colback=blue!30!background,
@@ -67,7 +67,10 @@ BoldItalicFont = NotoSans-BoldItalic,
 \begin{document}
 \begin{tikzpicture}[inner sep=0pt,color=font]
   \node[anchor=west,align=left,line width=0pt] 
-    (title) at (0,0) {\huge\bfseries\noindent\T\\\smallskip\Large\bfseries\S}
+    (title) at (0,0) {\huge\bfseries\noindent\T}
+    ;
+  \node[anchor=north west,align=left,line width=0pt] 
+    (subtitle) at (title.south west) {\Large\bfseries\S\strut}
     ;
 \end{tikzpicture}
 
@@ -87,10 +90,15 @@ BoldItalicFont = NotoSans-BoldItalic,
   Energía potencial gravitacional
   &
   \begin{equation}
-    E_p = m g h
+    E_p = U = m g h
     \label{eq:ep}
   \end{equation}
   *donde h es distancia hacia abajo ($-y$), no arriba
+
+  \begin{equation}
+    \Delta U = -W \Rightarrow F(x) = -\nabla U(r)
+  \end{equation}
+
   \\
   Energía mecánica total
   &
@@ -102,7 +110,7 @@ BoldItalicFont = NotoSans-BoldItalic,
   Principio de la conservación
   &
   \begin{equation}
-    E_{mt~i} = E_{mt~f}
+    E_{mt\,i} = E_{mt\,f}; \Delta K = - \Delta U
     \label{eq:emtemtf}
   \end{equation}
   \medskip
@@ -115,6 +123,9 @@ BoldItalicFont = NotoSans-BoldItalic,
     W = \int \bar{F} \cdot d\bar{r}
     \label{eq:wdef}
   \end{equation}
+  Si la energía está asociada a un potencial entonces $W$ no depende de la trayectoria.
+
+  La fricción y la resistencia por gravedad no son conservativas
    \\
    Teorema del trabajo energía
   &
@@ -125,7 +136,7 @@ BoldItalicFont = NotoSans-BoldItalic,
   \\
   Plano inclinado
   &
-  Dado los ejes $x$, $y$ inclinados a un ángulo $\alpha$ y el peso $w$, ???
+  Sí
   \\
   Ley de Hooke
   &
@@ -139,9 +150,62 @@ BoldItalicFont = NotoSans-BoldItalic,
   \begin{equation}
     W = \int_{x_i}^{x_f} -kx dx
   \end{equation}
+  \\
+  Potencia???
+  &~
+  \\
+  Momento
+  &
+  \begin{equation}
+    \vec{p} = m\vec{v}
+  \end{equation}
 
+  Según Newton:
+  \begin{equation}
+    \vec{F}_{\text{neta}} = \frac{d\vec{p}}{dt} = \frac{d}{dt} (m\vec{v})
+  \end{equation}
 
+  \bigskip
+  \textbf{[Inter]cambio de momento entre dos partículas}
+  \begin{align*}
+    \Delta p_1 &= -\Delta p-2 \\
+    m_1 \Delta v_1 &= - m_2 \Delta v_2 \\
+  \end{align*}
+
+  \textbf{Cambio de momento}
+  \begin{equation}
+    \Delta p = \vec{p_f} - \vec{p_i}
+  \end{equation}
+
+  El momento total en un sistema aislado es constante.
+  \\
+  Centro de masa
+  &
+  \begin{equation}
+    cdm_{x} = \frac{\sum^{n}_{i}m_i x_i }{\sum^{n}_{i}m_i}x
+    \label{eq:cdmx}
+  \end{equation}
+
+  \begin{align}
+    M \vec{r}_{cdm} = m_1 \vec{r}_1 + m_2 \vec{r}_2 + \dots \\
+    M \vec{v}_{cdm} = m_1 \vec{v}_1 + m_2 \vec{v}_2 + \dots \\
+    M \vec{a}_{cdm} = m_1 \vec{a}_1 + m_2 \vec{a}_2 + \dots
+    \label{eq:mrcdm}
+  \end{align}
+  \\
+  Colisiones
+  &
+  \begin{align}
+    \vec{F} = \frac{d\vec{p}}{dt}
+  \end{align}
+  
+  Impulso
+  \begin{equation}
+    \vec{J} = \int^{t_f}_{t_i} \vec{F}(t)\,dt = p_f - p_t \frac{kg\,m}{s}
+  \end{equation}
 \end{longtblr}
+
+
 \end{document}
 
 
