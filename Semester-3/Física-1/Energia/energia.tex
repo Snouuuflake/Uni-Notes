@@ -201,8 +201,64 @@ BoldItalicFont = JetBrainsMono-BoldItalic,
   
   Impulso
   \begin{equation}
-    \vec{J} = \int^{t_f}_{t_i} \vec{F}(t)\,dt = p_f - p_t \frac{kg\,m}{s}
+    \vec{J} = \int^{t_f}_{t_i} \vec{F}(t)\,dt = p_f - p_i ~~ \frac{kg\,m}{s}
   \end{equation}
+
+  \subsection*{Caso I: Colisión elástica}
+  Se conserva la energía cinética y el momento:
+
+  \begin{equation}
+    \vec{v}_{cdm} = \frac {\vec{p}_{1\,i} + \vec{p}_{2\,i}} {m_1 + m_2} 
+    \label{eq:colc1p}
+  \end{equation}
+
+  \subsubsection*{Si la partícula 2 inicia en reposo:}
+  \begin{align}
+    m_i v_{1\,i} &= m_i v_{2\,f} + m_i v_{2\,f}  
+    \label{eq:colc1}
+    \\
+    v_{1\,f} &= \frac{m_1 - m_2}{m_1 + m_2} v_{1\,i} \\
+    v_{2\,f} &= \frac{2 m_1}{m_1 + m_2} v_{1\,i} \\
+  \end{align}
+
+  Casos particulares:
+  \begin{center}
+    \begin{tblr}{columns={l},rowsep={10pt}}
+      Si $m_1 = m_2$ & $v_{1\,f} = 0$ & $v_{2\,f} = v_{1\,i}$ \\
+      Si $m_1 < m_2$ & $v_{1\,f} \simeq -v_{1\,i}$ & $v_{2\,f} \simeq \frac{2 m_1}{m_2} v_{1\,i}$ \\
+      Si $m_1 > m_2$ & $v_{1\,f} \simeq v_{1\,i}$ & $v_{2\,f} \simeq 2v_{1\,i}$
+    \end{tblr}
+  \end{center}
+
+  \\~
+  &
+  \subsubsection*{Si ambos objectos están en movimiento:}
+  \begin{align}
+    v_{1\,f} = \frac{m_1 - m_2}{m_1 + m_2} v_{1\,i} + \frac{2 m_2}{m_1 + m_2} v_{2\,f} \\
+    v_{2\,f} = \frac{m_2 - m_1}{m_1 + m_2} v_{2\,i} + \frac{2 m_1}{m_1 + m_2} v_{1\,f}
+  \end{align}
+
+  \\
+  Momento angular
+  &
+  \begin{equation}
+    \vec{l} = \vec{r} \text{(radio)} \times \vec{p} = m (\vec{r} \times \vec{v}) ~~ kg\,\frac{m^2}s
+    \label{eq:ma1}
+  \end{equation}
+  \begin{equation}
+    |l| = rmv\sin(\phi) \text{ o } l = rp_{\perp} 
+  \end{equation}
+  donde $p_{\perp}$ es perpendicular a r
+  \\
+  Torque
+  &
+  \begin{align}
+    \vec{\mathcal T}  &= \frac{d\vec l}{dt} = \vec{r} \times F_{neta} \\
+    \vec{\mathcal{T}} &= r F \sin{\theta}
+  \end{align}
+
+  Sin ninguna fuerza externa, $\vec{L_i} = \vec{L_f}$
+
 \end{longtblr}
 
 
